@@ -10,7 +10,10 @@ def handle_login(username, password):
         user = cursor.fetchone()
         cursor.close()
         conn.close()
-        return True if user else false
+        if user:
+            return user
+        else:
+            return None
     except Exception as e:
         print(f"Terjadi kesalahan: {e}")
         return False
