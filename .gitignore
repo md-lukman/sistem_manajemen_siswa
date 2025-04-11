@@ -1,0 +1,27 @@
+# --- Python virtual environment --- myenv
+venv/
+env/
+myenv/
+
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.log
+*.sqlite3
+*.db
+*.pid
+.env
+.env.*
+node_modules/
+dist/
+build/
+*.lock
+package-lock.json
+yarn.lock
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
