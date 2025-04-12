@@ -9,7 +9,7 @@
 	<link href="/static/css/font-awesome.min.css" rel="stylesheet">
 	<link href="/static/css/datepicker3.css" rel="stylesheet">
 	<link href="/static/css/styles.css" rel="stylesheet">
-
+	<link href="/static/css/styles.css" rel="stylesheet">
 	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i"
 		rel="stylesheet">
@@ -17,6 +17,10 @@
 	<script src="js/html5shiv.js"></script>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+
+	
+
+	 
 </head>
 
 <body>
@@ -109,11 +113,11 @@
 			</div>
 		</form>
 		<ul class="nav menu">
-			<li class="active"><a href="/admin/index"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+			<li  class="active" ><a href="/admin/index"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
 			<li><a href="/admin/siswa"><em class="fa fa-calendar">&nbsp;</em> Siswa</a></li>
 			<li><a href="/admin/matkul"><em class="fa fa-bar-chart">&nbsp;</em> Mata Pelajaran</a></li>
 			<li><a href="/admin/nilai"><em class="fa fa-toggle-off">&nbsp;</em> Nilai</a></li>
-			<li><a href="/admin/jadwal"><em class="fa fa-clone">&nbsp;</em> Jadwal Pelajaran</a></li>
+			<li ><a href="/admin/jadwal;"><em class="fa fa-clone">&nbsp;</em> Jadwal Pelajaran</a></li>
 			<li class="parent "><a data-toggle="collapse" href="#sub-item-1">
 					<em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1"
 						class="icon pull-right"><em class="fa fa-plus"></em></span>
@@ -156,7 +160,7 @@
 					<div class="panel panel-teal panel-widget border-right">
 						<div class="row no-padding"><em class="fa fa-xl fa-shopping-cart color-blue"></em>
 							<div class="large">120</div>
-							<div class="text-muted">New Orders</div>
+							<div class="text-muted">Jadwal</div>
 						</div>
 					</div>
 				</div>
@@ -164,7 +168,7 @@
 					<div class="panel panel-blue panel-widget border-right">
 						<div class="row no-padding"><em class="fa fa-xl fa-comments color-orange"></em>
 							<div class="large">52</div>
-							<div class="text-muted">Comments</div>
+							<div class="text-muted">Matkul</div>
 						</div>
 					</div>
 				</div>
@@ -172,7 +176,7 @@
 					<div class="panel panel-orange panel-widget border-right">
 						<div class="row no-padding"><em class="fa fa-xl fa-users color-teal"></em>
 							<div class="large">24</div>
-							<div class="text-muted">New Users</div>
+							<div class="text-muted">Nilai</div>
 						</div>
 					</div>
 				</div>
@@ -180,7 +184,7 @@
 					<div class="panel panel-red panel-widget ">
 						<div class="row no-padding"><em class="fa fa-xl fa-search color-red"></em>
 							<div class="large">25.2k</div>
-							<div class="text-muted">Page Views</div>
+							<div class="text-muted">Siswa</div>
 						</div>
 					</div>
 				</div>
@@ -188,49 +192,39 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						Site Traffic Overview
-						<ul class="pull-right panel-settings panel-button-tab-right">
-							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
-									<em class="fa fa-cogs"></em>
-								</a>
-								<ul class="dropdown-menu dropdown-menu-right">
-									<li>
-										<ul class="dropdown-settings">
-											<li><a href="#">
-													<em class="fa fa-cog"></em> Settings 1
-												</a></li>
-											<li class="divider"></li>
-											<li><a href="#">
-													<em class="fa fa-cog"></em> Settings 2
-												</a></li>
-											<li class="divider"></li>
-											<li><a href="#">
-													<em class="fa fa-cog"></em> Settings 3
-												</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-						</ul>
-						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em
-								class="fa fa-toggle-up"></em></span>
-					</div>
-					<div class="panel-body">
-						<div class="canvas-wrapper">
-							<canvas class="main-chart" id="line-chart" height="200" width="600"></canvas>
-						</div>
-					</div>
+			  <div class="panel panel-default">
+				<div class="panel-heading">
+				  Line Chart
+				  <ul class="pull-right panel-settings panel-button-tab-right">
+					<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
+						<em class="fa fa-cogs"></em>
+					  </a>
+					  <ul class="dropdown-menu dropdown-menu-right">
+						<li>
+						  <ul class="dropdown-settings">
+							<li><a href="#"><em class="fa fa-cog"></em> Settings 1</a></li>
+							<li class="divider"></li>
+							<li><a href="#"><em class="fa fa-cog"></em> Settings 2</a></li>
+							<li class="divider"></li>
+							<li><a href="#"><em class="fa fa-cog"></em> Settings 3</a></li>
+						  </ul>
+						</li>
+					  </ul>
+					</li>
+				  </ul>
+				  <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
 				</div>
+				<div id="main"></div>
+			  </div>
 			</div>
-		</div><!--/.row-->
+		  </div><!--/.row-->
+		  
 
 		<div class="row">
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
-						<h4>New Orders</h4>
+						<h4>Jadwal</h4>
 						<div class="easypiechart" id="easypiechart-blue" data-percent="92"><span
 								class="percent">92%</span></div>
 					</div>
@@ -239,7 +233,7 @@
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
-						<h4>Comments</h4>
+						<h4>Matkul</h4>
 						<div class="easypiechart" id="easypiechart-orange" data-percent="65"><span
 								class="percent">65%</span></div>
 					</div>
@@ -248,7 +242,7 @@
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
-						<h4>New Users</h4>
+						<h4>Nilai</h4>
 						<div class="easypiechart" id="easypiechart-teal" data-percent="56"><span
 								class="percent">56%</span></div>
 					</div>
@@ -257,7 +251,7 @@
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-body easypiechart-panel">
-						<h4>Visitors</h4>
+						<h4>Siswa</h4>
 						<div class="easypiechart" id="easypiechart-red" data-percent="27"><span
 								class="percent">27%</span></div>
 					</div>
@@ -265,273 +259,19 @@
 			</div>
 		</div><!--/.row-->
 
-		<div class="row">
-			<div class="col-md-6">
-				<div class="panel panel-default chat">
-					<div class="panel-heading">
-						Chat
-						<ul class="pull-right panel-settings panel-button-tab-right">
-							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
-									<em class="fa fa-cogs"></em>
-								</a>
-								<ul class="dropdown-menu dropdown-menu-right">
-									<li>
-										<ul class="dropdown-settings">
-											<li><a href="#">
-													<em class="fa fa-cog"></em> Settings 1
-												</a></li>
-											<li class="divider"></li>
-											<li><a href="#">
-													<em class="fa fa-cog"></em> Settings 2
-												</a></li>
-											<li class="divider"></li>
-											<li><a href="#">
-													<em class="fa fa-cog"></em> Settings 3
-												</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-						</ul>
-						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em
-								class="fa fa-toggle-up"></em></span>
-					</div>
-					<div class="panel-body">
-						<ul>
-							<li class="left clearfix"><span class="chat-img pull-left">
-									<img src="http://placehold.it/60/30a5ff/fff" alt="User Avatar" class="img-circle" />
-								</span>
-								<div class="chat-body clearfix">
-									<div class="header"><strong class="primary-font">John Doe</strong> <small
-											class="text-muted">32 mins ago</small></div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ante turpis,
-										rutrum ut ullamcorper sed, dapibus ac nunc.</p>
-								</div>
-							</li>
-							<li class="right clearfix"><span class="chat-img pull-right">
-									<img src="http://placehold.it/60/dde0e6/5f6468" alt="User Avatar"
-										class="img-circle" />
-								</span>
-								<div class="chat-body clearfix">
-									<div class="header"><strong class="pull-left primary-font">Jane Doe</strong> <small
-											class="text-muted">6 mins ago</small></div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ante turpis,
-										rutrum ut ullamcorper sed, dapibus ac nunc.</p>
-								</div>
-							</li>
-							<li class="left clearfix"><span class="chat-img pull-left">
-									<img src="http://placehold.it/60/30a5ff/fff" alt="User Avatar" class="img-circle" />
-								</span>
-								<div class="chat-body clearfix">
-									<div class="header"><strong class="primary-font">John Doe</strong> <small
-											class="text-muted">32 mins ago</small></div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ante turpis,
-										rutrum ut ullamcorper sed, dapibus ac nunc.</p>
-								</div>
-							</li>
-						</ul>
-					</div>
-					<div class="panel-footer">
-						<div class="input-group">
-							<input id="btn-input" type="text" class="form-control input-md"
-								placeholder="Type your message here..." /><span class="input-group-btn">
-								<button class="btn btn-primary btn-md" id="btn-chat">Send</button>
-							</span>
-						</div>
-					</div>
-				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						To-do List
-						<ul class="pull-right panel-settings panel-button-tab-right">
-							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
-									<em class="fa fa-cogs"></em>
-								</a>
-								<ul class="dropdown-menu dropdown-menu-right">
-									<li>
-										<ul class="dropdown-settings">
-											<li><a href="#">
-													<em class="fa fa-cog"></em> Settings 1
-												</a></li>
-											<li class="divider"></li>
-											<li><a href="#">
-													<em class="fa fa-cog"></em> Settings 2
-												</a></li>
-											<li class="divider"></li>
-											<li><a href="#">
-													<em class="fa fa-cog"></em> Settings 3
-												</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-						</ul>
-						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em
-								class="fa fa-toggle-up"></em></span>
-					</div>
-					<div class="panel-body">
-						<ul class="todo-list">
-							<li class="todo-list-item">
-								<div class="checkbox">
-									<input type="checkbox" id="checkbox-1" />
-									<label for="checkbox-1">Make coffee</label>
-								</div>
-								<div class="pull-right action-buttons"><a href="#" class="trash">
-										<em class="fa fa-trash"></em>
-									</a></div>
-							</li>
-							<li class="todo-list-item">
-								<div class="checkbox">
-									<input type="checkbox" id="checkbox-2" />
-									<label for="checkbox-2">Check emails</label>
-								</div>
-								<div class="pull-right action-buttons"><a href="#" class="trash">
-										<em class="fa fa-trash"></em>
-									</a></div>
-							</li>
-							<li class="todo-list-item">
-								<div class="checkbox">
-									<input type="checkbox" id="checkbox-3" />
-									<label for="checkbox-3">Reply to Jane</label>
-								</div>
-								<div class="pull-right action-buttons"><a href="#" class="trash">
-										<em class="fa fa-trash"></em>
-									</a></div>
-							</li>
-							<li class="todo-list-item">
-								<div class="checkbox">
-									<input type="checkbox" id="checkbox-4" />
-									<label for="checkbox-4">Make more coffee</label>
-								</div>
-								<div class="pull-right action-buttons"><a href="#" class="trash">
-										<em class="fa fa-trash"></em>
-									</a></div>
-							</li>
-							<li class="todo-list-item">
-								<div class="checkbox">
-									<input type="checkbox" id="checkbox-5" />
-									<label for="checkbox-5">Work on the new design</label>
-								</div>
-								<div class="pull-right action-buttons"><a href="#" class="trash">
-										<em class="fa fa-trash"></em>
-									</a></div>
-							</li>
-							<li class="todo-list-item">
-								<div class="checkbox">
-									<input type="checkbox" id="checkbox-6" />
-									<label for="checkbox-6">Get feedback on design</label>
-								</div>
-								<div class="pull-right action-buttons"><a href="#" class="trash">
-										<em class="fa fa-trash"></em>
-									</a></div>
-							</li>
-						</ul>
-					</div>
-					<div class="panel-footer">
-						<div class="input-group">
-							<input id="btn-input" type="text" class="form-control input-md"
-								placeholder="Add new task" /><span class="input-group-btn">
-								<button class="btn btn-primary btn-md" id="btn-todo">Add</button>
-							</span>
-						</div>
-					</div>
-				</div>
-			</div><!--/.col-->
-
-
-			<div class="col-md-6">
-				<div class="panel panel-default ">
-					<div class="panel-heading">
-						Timeline
-						<ul class="pull-right panel-settings panel-button-tab-right">
-							<li class="dropdown"><a class="pull-right dropdown-toggle" data-toggle="dropdown" href="#">
-									<em class="fa fa-cogs"></em>
-								</a>
-								<ul class="dropdown-menu dropdown-menu-right">
-									<li>
-										<ul class="dropdown-settings">
-											<li><a href="#">
-													<em class="fa fa-cog"></em> Settings 1
-												</a></li>
-											<li class="divider"></li>
-											<li><a href="#">
-													<em class="fa fa-cog"></em> Settings 2
-												</a></li>
-											<li class="divider"></li>
-											<li><a href="#">
-													<em class="fa fa-cog"></em> Settings 3
-												</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-						</ul>
-						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em
-								class="fa fa-toggle-up"></em></span>
-					</div>
-					<div class="panel-body timeline-container">
-						<ul class="timeline">
-							<li>
-								<div class="timeline-badge"><em class="glyphicon glyphicon-pushpin"></em></div>
-								<div class="timeline-panel">
-									<div class="timeline-heading">
-										<h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
-									</div>
-									<div class="timeline-body">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at sodales
-											nisl. Donec malesuada orci ornare risus finibus feugiat.</p>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="timeline-badge primary"><em class="glyphicon glyphicon-link"></em></div>
-								<div class="timeline-panel">
-									<div class="timeline-heading">
-										<h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
-									</div>
-									<div class="timeline-body">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="timeline-badge"><em class="glyphicon glyphicon-camera"></em></div>
-								<div class="timeline-panel">
-									<div class="timeline-heading">
-										<h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
-									</div>
-									<div class="timeline-body">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at sodales
-											nisl. Donec malesuada orci ornare risus finibus feugiat.</p>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="timeline-badge"><em class="glyphicon glyphicon-paperclip"></em></div>
-								<div class="timeline-panel">
-									<div class="timeline-heading">
-										<h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
-									</div>
-									<div class="timeline-body">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div><!--/.col-->
-		</div><!--/.row-->
 	</div> <!--/.main-->
+	<script src="https://cdn.jsdelivr.net/npm/echarts@5.0.0/dist/echarts.min.js"></script>
 
-	<script src="js/jquery-1.11.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/chart.min.js"></script>
-	<script src="js/chart-data.js"></script>
-	<script src="js/easypiechart.js"></script>
-	<script src="js/easypiechart-data.js"></script>
-	<script src="js/bootstrap-datepicker.js"></script>
-	<script src="js/custom.js"></script>
+	<!-- END GLOBAL MANDATORY SCRIPTS -->
+	<script src="/static/js/jquery-1.11.1.min.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+	<script src="/static/js/chart.min.js"></script>
+	<script src="/static/js/chart-data.js"></script>
+	<script src="/static/js/easypiechart.js"></script>
+	<script src="/static/js/easypiechart-data.js"></script>
+	<script src="/static/js/bootstrap-datepicker.js"></script>
+	<script src="/static/js/custom.js"></script>
+	
 	<script>
 		window.onload = function () {
 			var chart1 = document.getElementById("line-chart").getContext("2d");
@@ -543,7 +283,69 @@
 			});
 		};
 	</script>
-
+	<script>
+		var chartDom = document.getElementById('main');
+		var myChart = echarts.init(chartDom);
+		var option;
+		
+		option = {
+		 
+		  tooltip: {
+			trigger: 'axis'
+		  },
+		  legend: {
+			data: ['Jadwal', 'Matkul', 'Nilai', 'Siswa', '']
+		  },
+		  grid: {
+			left: '3%',
+			right: '4%',
+			bottom: '3%',
+			containLabel: true
+		  },
+		  toolbox: {
+			feature: {
+			  saveAsImage: {}
+			}
+		  },
+		  xAxis: {
+			type: 'category',
+			boundaryGap: false,
+			data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+		  },
+		  yAxis: {
+			type: 'value'
+		  },
+		  series: [
+			{
+			  name: 'Jadwal',
+			  type: 'line',
+			  stack: 'Total',
+			  data: [100, 132, 101, 60, 90, 230, 210]
+			},
+			{
+			  name: 'Matkul',
+			  type: 'line',
+			  stack: 'Total',
+			  data: [220, 182, 191, 234, 290, 330, 310]
+			},
+			{
+			  name: 'Nilai',
+			  type: 'line',
+			  stack: 'Total',
+			  data: [150, 232, 201, 154, 190, 330, 410]
+			},
+			{
+			  name: 'Siswa',
+			  type: 'line',
+			  stack: 'Total',
+			  data: [320, 332, 301, 334, 390, 330, 320]
+			},
+		  ]
+		};
+	  
+		myChart.setOption(option);
+	  </script>
+	  
 </body>
 
 </html>

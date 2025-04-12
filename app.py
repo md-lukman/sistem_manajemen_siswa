@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-from logic.auth import handle_login
+from logic.logiCRUD import handle_login
 
 app = Flask(__name__)
 
@@ -7,11 +7,11 @@ app = Flask(__name__)
 def login_form():
     return render_template('login.html')
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET'])
 def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+    if request.method == 'GET':
+        username = request.args.get('username')
+        password = request.args.get('password')
         user = handle_login(username, password)
         if user:
             if user['role'] == 'admin':
@@ -21,7 +21,7 @@ def login():
             
         else:
             return "Login gagal"
-    return render_template(login.html)
+    return render_template('login.html')
     
     
 @app.route('/admin/index')
@@ -32,7 +32,6 @@ def admin_dashboard():
 @app.route('/admin/siswa')
 def widget():
     return render_template('/admin/siswa.html')
-
 
 @app.route('/admin/matkul')
 def charts():
@@ -45,6 +44,10 @@ def elements():
 @app.route('/admin/jadwal')
 def panels():
     return render_template('/admin/jadwal.html')
+
+@app.route('/admin/components/form')
+def formdata():
+    return render_template('/admin/components/form_data.html')
     
     
 if __name__ == '__main__':

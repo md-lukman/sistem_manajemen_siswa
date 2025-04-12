@@ -331,6 +331,14 @@ a.label:hover, a.label:focus {
 .panel {
   border: 0; }
 
+  
+#main {
+  width: 1555px;
+  height: 40rem ;
+  position: relative;
+}
+  
+
 .panel-container {
   padding-top: 20px; }
 
