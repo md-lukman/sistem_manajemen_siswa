@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-from logic.logiCRUD import handle_login, tambah_mahasiswa
+from logic.logiCRUD import handle_login, tambah_mahasiswa, tampil_mahasiswa
 import os
 
 app = Flask(__name__)
@@ -32,7 +32,8 @@ def admin_dashboard():
 
 @app.route('/admin/siswa')
 def widget():
-    return render_template('/admin/siswa.html')
+    data = tampil_mahasiswa()
+    return render_template('/admin/siswa.html', mahasiswa=data)
 
 @app.route('/admin/matkul')
 def charts():
@@ -68,8 +69,8 @@ def createData():
 
 @app.route('/siswa')
 def siswa():
-    return render_template('/admin/siswa.html')
-
+    data = tampil_mahasiswa()
+    return render_template('/admin/siswa.html', mahasiswa=data)
 
 
 

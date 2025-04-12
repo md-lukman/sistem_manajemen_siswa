@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Lumino - Widgets</title>
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" />
-
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet" />
     <link href="/static/css/datepicker3.css" rel="stylesheet" />
     <link href="/static/css/styles.css" rel="stylesheet" />
+    <link href="/static/css/styles.css" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- Custom Font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
@@ -26,21 +29,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
-    <body>
-      {% with messages=get_flashed_messages() %}
-        {% if messages %}
-          <div class="col-md-4">
-            <div class="panel panel-success">
-              <div class="panel-heading">Success</div>
-              <div class="panel-body">{{ messages.0 }}</div>
-            </div>
-          </div>
-        {% endif %}
-      {% endwith %}
-
-      <!-- Konten siswa.html lainnya -->
-    </body>
-
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -140,7 +128,7 @@
         </div>
       </form>
       <ul class="nav menu">
-        <li>
+        <li >
           <a href="/admin/index"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a>
         </li>
         <li class="active">
@@ -155,20 +143,7 @@
         <li>
           <a href="/admin/jadwal"><em class="fa fa-clone">&nbsp;</em> Jadwal Pelajaran</a>
         </li>
-        <li class="parent">
-          <a data-toggle="collapse" href="#sub-item-1"><em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span></a>
-          <ul class="children collapse" id="sub-item-1">
-            <li>
-              <a class="" href="#"><span class="fa fa-arrow-right">&nbsp;</span> Sub Item 1</a>
-            </li>
-            <li>
-              <a class="" href="#"><span class="fa fa-arrow-right">&nbsp;</span> Sub Item 2</a>
-            </li>
-            <li>
-              <a class="" href="#"><span class="fa fa-arrow-right">&nbsp;</span> Sub Item 3</a>
-            </li>
-          </ul>
-        </li>
+        
         <li>
           <a href="login.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a>
         </li>
@@ -201,17 +176,16 @@
             <div class="panel-heading">
               Daftar Siswa
 
-              <button type="button" class="btn btn-primary pull-right" style="margin-top: 3px; padding: 7px ; margin-right: 13px;" data-toggle="modal" data-target="#exampleModal">Open Modal</button>
+              <button type="button" class="btn btn-primary pull-right" style="margin-top: 3px; padding: 7px ; margin-right: 13px;" data-toggle="modal" data-target="#exampleModal">Tambah Mahasiswa</button>
             </div>
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Selamat Datang di Situs Web Kami</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Data Diri Mahasiswa</h5>
                   </div>
                   <div class="modal-body">
-                    <h4>Data Diri Mahasiswa</h4>
-                    <p>Harap isi informasi berikut:</p>
+                    <h4>Harap isi informasi berikut:</h4>
                     <form method="POST" action="/create" enctype="multipart/form-data">
                       <div class="mb-3" style="margin-top: 10px;">
                         <label for="nama" class="form-label">Nama Mahasiswa</label>
@@ -263,81 +237,43 @@
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>NIM</th>
-                                <th>Jenis kelmin</th>
+                                <th>Jenis Kelamin</th>
                                 <th>Prodi</th>
                                 <th>Alamat</th>
                                 <th>Foto</th>
                                 <th>Edit</th>
-                                <th>updated</th>
+                                <th>Updated</th>
                               </tr>
                             </thead>
                             <tbody>
+                              {% for mhs in mahasiswa %}
                               <tr>
-                                <td>Tiger</td>
-                                <td>Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
-                                <td>5421</td>
-                                <td>t.nixon@datatables.net</td>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ mhs[1] }}</td> 
+                                <td>{{ mhs[2] }}</td>  <!-- NIM -->
+                                <td>{{ mhs[3] }}</td>  <!-- Jenis Kelamin -->
+                                <td>{{ mhs[4] }}</td>  <!-- Prodi -->
+                                <td>{{ mhs[5] }}</td>  <!-- Alamat -->
+                                <td>
+                                  {% if mhs[6] %}
+                                  <img src="{{ url_for('static', filename='uploads/' ~ mhs[6]) }}" alt="Foto" width="50">
+                                  {% else %}
+                                  Tidak ada foto
+                                  {% endif %}
+                                </td>
+                                <td>
+                                  <a href="/edit/{{ mhs[0] }}" title="Edit">
+                                    <i class="fas fa-edit fa-lg text-primary"></i>
+                                  </a>
+                                  &nbsp;
+                                  <a href="/delete/{{ mhs[0] }}" title="Delete" onclick="return confirm('Yakin ingin menghapus data ini?')">
+                                    <i class="fas fa-trash fa-lg text-danger"></i>
+                                  </a>
+                                </td>
+                                
+                                <td>{{ mhs[7] if mhs|length > 7 else '-' }}</td>  <!-- Updated_at -->
                               </tr>
-                              <tr>
-                                <td>Garrett</td>
-                                <td>Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>63</td>
-                                <td>2011/07/25</td>
-                                <td>$170,750</td>
-                                <td>8422</td>
-                                <td>g.winters@datatables.net</td>
-                              </tr>
-                              <tr>
-                                <td>Ashton</td>
-                                <td>Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
-                                <td>66</td>
-                                <td>2009/01/12</td>
-                                <td>$86,000</td>
-                                <td>1562</td>
-                                <td>a.cox@datatables.net</td>
-                              </tr>
-                              <tr>
-                                <td>Cedric</td>
-                                <td>Kelly</td>
-                                <td>Senior Javascript Developer</td>
-                                <td>Edinburgh</td>
-                                <td>22</td>
-                                <td>2012/03/29</td>
-                                <td>$433,060</td>
-                                <td>6224</td>
-                                <td>c.kelly@datatables.net</td>
-                              </tr>
-                              <tr>
-                                <td>Airi</td>
-                                <td>Satou</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>33</td>
-                                <td>2008/11/28</td>
-                                <td>$162,700</td>
-                                <td>5407</td>
-                                <td>a.satou@datatables.net</td>
-                              </tr>
-                              <tr>
-                                <td>Brielle</td>
-                                <td>Williamson</td>
-                                <td>Integration Specialist</td>
-                                <td>New York</td>
-                                <td>61</td>
-                                <td>2012/12/02</td>
-                                <td>$372,000</td>
-                                <td>4804</td>
-                                <td>b.williamson@datatables.net</td>
-                              </tr>
+                              {% endfor %}
                             </tbody>
                           </table>
                         </div>
@@ -347,6 +283,7 @@
                 </div>
               </div>
             </div>
+                       
           </div>
         </div>
       </div>

@@ -20,7 +20,7 @@ def handle_login(username, password):
 
 
 
-# create
+# create mahasiswa
 def tambah_mahasiswa(nama, nim, jenisKelamin, prodi, alamat, foto):
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
@@ -29,6 +29,36 @@ def tambah_mahasiswa(nama, nim, jenisKelamin, prodi, alamat, foto):
     conn.commit()
     cursor.close()
     conn.close()
+    
+    
+#read mahasiswanya
+def tampil_mahasiswa():
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM mahasiswa")
+    rows = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return rows  
+
+#update mahasiswa
+def update_mahasiswa(nim, nama=None, alamat=None, jenis_kelamin=None, foto_path=None):
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+    query = "UPDATE mahasiswa SET"
+    if nama:
+        query += f"nama='{nama}',"
+    if alamat:
+        query += f"alamat='{alamat}',"
+    if jenis_kelamin:
+        query += f"jenis_kelamin='{jenis_kelamin}',"
+    if foto_path:
+        query += f"foto='{foto_path}',"
+    query = query.rstrip(',') + f"WHERE nim='{nim}'"
+    cursor.execute(query)
+    conn.commit()
+    conn.close
+
 
 
 
