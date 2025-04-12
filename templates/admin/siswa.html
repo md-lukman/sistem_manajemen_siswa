@@ -12,10 +12,10 @@
     <!-- Custom Font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
 
-    <!--               [if lt IE 9]>
+    <!--                [if lt IE 9]>
 	<script src="js/html5shiv.js"></script>
 	<script src="js/respond.min.js"></script>
-	<![endif]               -->
+	<![endif]                -->
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
@@ -26,6 +26,21 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
+    <body>
+      {% with messages=get_flashed_messages() %}
+        {% if messages %}
+          <div class="col-md-4">
+            <div class="panel panel-success">
+              <div class="panel-heading">Success</div>
+              <div class="panel-body">{{ messages.0 }}</div>
+            </div>
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <!-- Konten siswa.html lainnya -->
+    </body>
+
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -197,14 +212,14 @@
                   <div class="modal-body">
                     <h4>Data Diri Mahasiswa</h4>
                     <p>Harap isi informasi berikut:</p>
-                    <form>
+                    <form method="POST" action="/create" enctype="multipart/form-data">
                       <div class="mb-3" style="margin-top: 10px;">
-                        <label for="name" class="form-label">Nama Mahasiswa</label>
-                        <input type="text" class="form-control" id="name" placeholder="Masukan nama mahasiswa" />
+                        <label for="nama" class="form-label">Nama Mahasiswa</label>
+                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan nama mahasiswa" />
                       </div>
                       <div class="mb-3" style="margin-top: 10px;">
                         <label for="nim" class="form-label">Nim</label>
-                        <input type="number" class="form-control" id="nim" placeholder="Masukan nim mahasiswa" />
+                        <input type="number" class="form-control" id="nim" name="nim" placeholder="Masukan nim mahasiswa" />
                       </div>
                       <div class="mb-3" style="margin-top: 10px;">
                         <label for="jkelamin" class="form-label">Jenis Kelamin</label>
@@ -216,17 +231,21 @@
                       </div>
                       <div class="mb-3" style="margin-top: 10px;">
                         <label for="prodi" class="form-label">Prodi</label>
-                        <input type="text" class="form-control" id="prodi" placeholder="Masukan prodi mahasiswa" />
+                        <input type="text" class="form-control" id="prodi" placeholder="Masukan prodi mahasiswa" name="prodi"/>
+                      </div>
+                      <div class="mb-3" style="margin-top: 10px;">
+                        <label for="alamat" class="form-label">Alamat</label>
+                        <input type="text" class="form-control" id="alamat" placeholder="Masukan alamat mahasiswa" name="alamat"/>
                       </div>
                       <div class="mb-3" style="margin-top: 10px;">
                         <label for="foto" class="form-label">Foto Profil</label>
-                        <input type="file" class="form-control" id="foto" name="foto" accept="image/*" />
+                        <input type="file" class="form-control" id="foto" name="foto" />
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                       </div>
                     </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Submit</button>
                   </div>
                 </div>
               </div>

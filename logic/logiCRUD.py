@@ -19,3 +19,17 @@ def handle_login(username, password):
         return False
 
 
+
+# create
+def tambah_mahasiswa(nama, nim, jenisKelamin, prodi, alamat, foto):
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+    query = f"INSERT INTO mahasiswa (nama, nim, jenis_kelamin, prodi, alamat, foto) VALUES ('{nama}', '{nim}','{jenisKelamin}','{prodi}', '{alamat}', '{foto}')"
+    cursor.execute(query)
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+
+
+

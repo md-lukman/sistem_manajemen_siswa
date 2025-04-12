@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
-from logic.logiCRUD import handle_login
+from logic.logiCRUD import handle_login, tambah_mahasiswa
+import os
 
 app = Flask(__name__)
 
@@ -45,10 +46,33 @@ def elements():
 def panels():
     return render_template('/admin/jadwal.html')
 
-@app.route('/admin/components/form')
-def formdata():
-    return render_template('/admin/components/form_data.html')
+@app.route('/create', methods=['POST'])
+def createData():
+    if request.method == 'POST':
+        nama = request.form.get('nama')
+        nim = request.form.get('nim')
+        jenisKelamin = request.form.get('jkelamin')
+        prodi = request.form.get('prodi')
+        alamat = request.form.get('alamat')
+        foto = request.files.get('foto')
+        
+        UPLOAD_FOLDER = os.path.join('static', 'uploads')
+        if foto:
+            foto_path = os.path.join(UPLOAD_FOLDER, foto.filename)
+            foto.save(foto_path)
+        else:
+            foto_path = None
     
-    
+        tambah_mahasiswa(nama, nim, jenisKelamin, prodi, alamat, foto_path)
+        return redirect(url_for('siswa'))
+
+@app.route('/siswa')
+def siswa():
+    return render_template('/admin/siswa.html')
+
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
