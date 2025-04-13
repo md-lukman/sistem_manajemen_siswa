@@ -1,5 +1,5 @@
 import mysql.connector
-from config import db_config
+from Backend.config import db_config
 
 
 def handle_login(username, password):

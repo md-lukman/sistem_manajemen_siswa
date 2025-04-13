@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
-from logic.FuncSiswa import handle_login, tambah_mahasiswa, deleteMahasiswa, tampil_mahasiswa, updateMahasiswa
+from Backend.admin.FuncSiswa import handle_login, tambah_mahasiswa, deleteMahasiswa, tampil_mahasiswa, updateMahasiswa
 import os
+from Backend.routes.siswaRoutes import siswa_bp
 
 app = Flask(__name__)
 
@@ -16,7 +17,7 @@ def login():
         user = handle_login(username, password)
         if user:
             if user['role'] == 'admin':
-                return redirect(url_for('admin_dashboard'))
+                return redirect(url_for('siswa_bp.admin_dashboard'))
             else:
                 return redirect(url_for('user_dashboard'))
             
@@ -25,49 +26,10 @@ def login():
     return render_template('login.html')
     
     
-@app.route('/admin/index')
-def admin_dashboard():
-    return render_template('/admin/index.html')
-    
+app.register_blueprint(siswa_bp)
 
-@app.route('/admin/siswa')
-def widget():
-    data = tampil_mahasiswa()
-    return render_template('/admin/siswa.html', mahasiswa=data)
 
-@app.route('/admin/matkul')
-def charts():
-    return render_template('/admin/matkul.html')
 
-@app.route('/admin/nilai')
-def elements():
-    return render_template('/admin/Nilai.html')
-
-@app.route('/admin/jadwal')
-def panels():
-    return render_template('/admin/jadwal.html')
-
-@app.route('/create', methods=['POST'])
-def createData():
-    if request.method == 'POST':
-        nama = request.form.get('nama')
-        nim = request.form.get('nim')
-        jenisKelamin = request.form.get('jkelamin')
-        prodi = request.form.get('prodi')
-        alamat = request.form.get('alamat')
-        foto = request.files.get('foto')
-        
-        UPLOAD_FOLDER = os.path.join('static', 'uploads')
-        if foto and foto.filename != '':
-            foto_path = os.path.join(UPLOAD_FOLDER, foto.filename)
-            foto.save(foto_path)
-            foto_nama = foto.filename
-        else:
-            foto_nama = None
-    
-        tambah_mahasiswa(nama, nim, jenisKelamin, prodi, alamat, foto_nama
-                         )
-        return redirect(url_for('siswa'))
 
 @app.route('/siswa')
 def siswa():
