@@ -1,7 +1,7 @@
 ## Project Structure
 
 ### Backend
-- **Language**: Python native
+- **Language**: Python - Semiframework flask
 - **Functionality**: Handles all the business logic, database interactions, and routing.
 
 ### Frontend
