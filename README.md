@@ -1,7 +1,7 @@
 ## Project Structure
 
 ### Backend
-- **Language**: Python
+- **Language**: Python native
 - **Functionality**: Handles all the business logic, database interactions, and routing.
 
 ### Frontend
