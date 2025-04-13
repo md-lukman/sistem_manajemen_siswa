@@ -1,6 +1,7 @@
 import mysql.connector
 from config import db_config
 
+
 def handle_login(username, password):
     try:
         conn = mysql.connector.connect(**db_config)
@@ -19,7 +20,6 @@ def handle_login(username, password):
         return False
 
 
-
 # create mahasiswa
 def tambah_mahasiswa(nama, nim, jenisKelamin, prodi, alamat, foto):
     conn = mysql.connector.connect(**db_config)
@@ -29,9 +29,9 @@ def tambah_mahasiswa(nama, nim, jenisKelamin, prodi, alamat, foto):
     conn.commit()
     cursor.close()
     conn.close()
-    
-    
-#read mahasiswanya
+
+
+# read mahasiswanya
 def tampil_mahasiswa():
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
@@ -39,27 +39,28 @@ def tampil_mahasiswa():
     rows = cursor.fetchall()
     cursor.close()
     conn.close()
-    return rows  
+    return rows
 
-#update mahasiswa
-def update_mahasiswa(nim, nama=None, alamat=None, jenis_kelamin=None, foto_path=None):
+
+# update mahasiswa untuk update data
+def updateMahasiswa(id, nama, nim, jk, prodi, alamat, foto):
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
-    query = "UPDATE mahasiswa SET"
-    if nama:
-        query += f"nama='{nama}',"
-    if alamat:
-        query += f"alamat='{alamat}',"
-    if jenis_kelamin:
-        query += f"jenis_kelamin='{jenis_kelamin}',"
-    if foto_path:
-        query += f"foto='{foto_path}',"
-    query = query.rstrip(',') + f"WHERE nim='{nim}'"
+    if foto:
+        query = f"""UPDATE mahasiswa SET nama='{nama}', nim='{nim}', jenis_kelamin='{jk}', prodi='{prodi}', alamat='{alamat}', foto='{foto}', updated_at=NOW() WHERE id={id}"""
+    else:
+        query = f"""UPDATE mahasiswa SET nama='{nama}', nim='{nim}',jenis_kelamin='{jk}', prodi='{prodi}', alamat='{alamat}', updated_at=NOW() WHERE id={id}"""
+
     cursor.execute(query)
     conn.commit()
-    conn.close
-
-
-
-
-
+    cursor.close()
+    conn.close()
+    
+# delete mahasiswa
+def deleteMahasiswa(id):
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+    query = f"DELETE FROM mahasiswa WHERE id='{id}'"
+    cursor.execute(query)
+    conn.commit()
+    conn.close()

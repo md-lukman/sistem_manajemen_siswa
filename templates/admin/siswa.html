@@ -178,6 +178,8 @@
 
               <button type="button" class="btn btn-primary pull-right" style="margin-top: 3px; padding: 7px ; margin-right: 13px;" data-toggle="modal" data-target="#exampleModal">Tambah Mahasiswa</button>
             </div>
+
+           
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
@@ -224,6 +226,58 @@
                 </div>
               </div>
             </div>
+
+
+            {% for mhs in mahasiswa %}
+            <div class="modal fade" id="editModal_{{ mhs[2] }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Data Diri Mahasiswa</h5>
+                  </div>
+                  <div class="modal-body">
+                    <h4>Harap isi informasi berikut:</h4>
+                    <form method="POST" action="/update/{{ mhs[0] }}" enctype="multipart/form-data">
+                      <div class="mb-3" style="margin-top: 10px;">
+                        <label for="nama" class="form-label">Nama Mahasiswa</label>
+                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan nama mahasiswa" value="{{ mhs[1] }}"/>
+                      </div>
+                      <div class="mb-3" style="margin-top: 10px;">
+                        <label for="nim" class="form-label">Nim</label>
+                        <input type="number" class="form-control" id="nim" name="nim" placeholder="Masukan nim mahasiswa" value="{{ mhs[2] }}"/>
+                      </div>
+                      <div class="mb-3" style="margin-top: 10px;">
+                        <label for="jkelamin" class="form-label">Jenis Kelamin</label>
+                        <select class="form-control" id="jkelamin" name="jkelamin">
+                          <option value="">-- Pilih Jenis Kelamin --</option>
+                          <option value="L" {% if mhs[3] == 'L' %}selected{% endif %}>Laki-laki</option>
+                          <option value="P" {% if mhs[3] == 'P'%}selected{% endif %}>Perempuan</option>
+                        </select>
+                      </div>
+                      <div class="mb-3" style="margin-top: 10px;">
+                        <label for="prodi" class="form-label">Prodi</label>
+                        <input type="text" class="form-control" id="prodi" placeholder="Masukan prodi mahasiswa" name="prodi" value="{{ mhs[4] }}"/>
+                      </div>
+                      <div class="mb-3" style="margin-top: 10px;">
+                        <label for="alamat" class="form-label">Alamat</label>
+                        <input type="text" class="form-control" id="alamat" placeholder="Masukan alamat mahasiswa" name="alamat" value="{{ mhs[5] }}"/>
+                      </div>
+                      <div class="mb-3" style="margin-top: 10px;">
+                        <label for="foto" class="form-label">Foto Profil</label>
+                        <input type="file" class="form-control" id="foto" name="foto" />
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+            
             <div class="panel-body">
               <div class="col-md-12 col-sm-12">
                 <div class="x_panel">
@@ -256,17 +310,19 @@
                                 <td>{{ mhs[5] }}</td>  <!-- Alamat -->
                                 <td>
                                   {% if mhs[6] %}
-                                  <img src="{{ url_for('static', filename='uploads/' ~ mhs[6]) }}" alt="Foto" width="50">
+                                  <img src="{{ url_for('static', filename='uploads/' ~ mhs[6]) }}" alt="Foto" width="45" >
                                   {% else %}
                                   Tidak ada foto
                                   {% endif %}
                                 </td>
                                 <td>
-                                  <a href="/edit/{{ mhs[0] }}" title="Edit">
+                                  
+
+                                  <a href=""  title="Edit" data-toggle="modal" data-target="#editModal_{{mhs[2]}}">
                                     <i class="fas fa-edit fa-lg text-primary"></i>
                                   </a>
                                   &nbsp;
-                                  <a href="/delete/{{ mhs[0] }}" title="Delete" onclick="return confirm('Yakin ingin menghapus data ini?')">
+                                  <a href="/delete/{{ mhs[0] }}" title="Delete" onclick="return confirm('APAKAH ANDA YAKIN INGIN MENGHAPUS DATA INI?')">
                                     <i class="fas fa-trash fa-lg text-danger"></i>
                                   </a>
                                 </td>
