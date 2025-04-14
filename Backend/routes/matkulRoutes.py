@@ -1,9 +1,11 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 import os
 from Backend.admin.FuncMatkul import tambah_matkul, getJumlahMapel, tampil_matkul
+from Backend.routes.siswaRoutes import chart
 
 
 matkul_bp = Blueprint('matkul_bp', __name__, url_prefix='/matkul')
+siswa_bp = Blueprint('siswa_bp', __name__, url_prefix='/admin')
 
 
 
@@ -21,5 +23,5 @@ def createData():
         
     
         tambah_matkul(kode_mapel, nama_mapel, deskripsi, guru_pengampu, semester)
-        return redirect(url_for('matkul_bp.chart'))
+        return redirect(url_for('siswa_bp.chart'))
     
