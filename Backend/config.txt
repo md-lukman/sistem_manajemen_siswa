@@ -1,0 +1,9 @@
+
+db_config = {
+    'host': 'localhost',
+    'user': '',
+    'password': '',
+    'database': ''
+}
+
+buat file configurasi di path Folder Backend dengan nama config.py dan sesuaikan dengan pengaturan database lokal anda
