@@ -24,7 +24,9 @@ def chart():
 
 @siswa_bp.route('/nilai')
 def element():
-    return render_template('/admin/Nilai.html')
+    data = tampil_matkul()
+    siswa = tampil_mahasiswa()
+    return render_template('/admin/Nilai.html', matkul=data, siswa=siswa)
 
 @siswa_bp.route('/jadwal')
 def panels():
