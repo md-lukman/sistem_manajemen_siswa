@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from Backend.admin.FuncSiswa import handle_login
 import os
 from Backend.routes.siswaRoutes import siswa_bp
+from Backend.routes.matkulRoutes import matkul_bp
 
 app = Flask(__name__)
 
@@ -27,6 +28,7 @@ def login():
     
     
 app.register_blueprint(siswa_bp)
+app.register_blueprint(matkul_bp)
 
 
 

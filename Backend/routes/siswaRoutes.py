@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 import os
 from Backend.admin.FuncSiswa import tampil_mahasiswa, tambah_mahasiswa, updateMahasiswa, deleteMahasiswa
+from Backend.admin.FuncMatkul import tampil_matkul
 
 
 siswa_bp = Blueprint('siswa_bp', __name__, url_prefix='/admin')
@@ -18,7 +19,8 @@ def widget():
 
 @siswa_bp.route('/matkul')
 def chart():
-    return render_template('/admin/matkul.html')
+    data = tampil_matkul()
+    return render_template('/admin/matkul.html', matkul=data)
 
 @siswa_bp.route('/nilai')
 def element():
