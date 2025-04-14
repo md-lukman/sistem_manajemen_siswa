@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-from Backend.admin.FuncSiswa import handle_login, tambah_mahasiswa, deleteMahasiswa, tampil_mahasiswa, updateMahasiswa
+from Backend.admin.FuncSiswa import handle_login
 import os
 from Backend.routes.siswaRoutes import siswa_bp
 
@@ -27,42 +27,6 @@ def login():
     
     
 app.register_blueprint(siswa_bp)
-
-
-
-
-@app.route('/siswa')
-def siswa():
-    data = tampil_mahasiswa()
-    return render_template('/admin/siswa.html', mahasiswa=data)
-
-
-@app.route('/update/<int:id>', methods=['POST'])
-def edit(id):
-    nama = request.form['nama']
-    nim = request.form['nim']
-    jk = request.form['jkelamin']
-    prodi = request.form['prodi']
-    alamat = request.form['alamat']
-    foto = request.files.get('foto')
-    
-    UPLOAD_FOLDER = os.path.join('static', 'uploads')
-    if foto and foto.filename != '':
-        foto_path = os.path.join(UPLOAD_FOLDER, foto.filename)
-        foto.save(foto_path)
-        foto_nama = foto.filename
-    else:
-        foto_nama = None
-        
-    updateMahasiswa(id, nama, nim, jk, prodi, alamat, foto_nama)
-    return redirect(url_for('siswa'))
-    
-@app.route('/delete/<int:id>')
-def delete(id):
-    deleteMahasiswa(id)
-    data = tampil_mahasiswa()
-    return render_template('/admin/siswa.html', mahasiswa=data)
-
 
 
 
