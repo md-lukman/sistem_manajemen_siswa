@@ -46,7 +46,7 @@ def update_matkul(id, nama_mapel, deskripsi, guru_pengampu, semester):
     conn.close()
     
 # delete matkul
-def deleteMahasiswa(id):
+def delete_matkul(id):
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
     query = f"DELETE FROM mata_pelajaran WHERE id='{id}'"

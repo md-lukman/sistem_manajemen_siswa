@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 import os
-from Backend.admin.FuncMatkul import tambah_matkul, getJumlahMapel, tampil_matkul, update_matkul
+from Backend.admin.FuncMatkul import tambah_matkul, getJumlahMapel, tampil_matkul, update_matkul, delete_matkul
 
 
 
@@ -35,4 +35,10 @@ def edit(id):
         
     update_matkul(id, nama_mapel, deskripsi, guru_pengampu, semester)
     return redirect(url_for('siswa_bp.chart'))
+
+@matkul_bp.route('/delete/<int:id>')
+def delete(id):
+    delete_matkul(id)
+    data = tampil_matkul()
+    return render_template('/admin/matkul.html', matkul=data)
     
