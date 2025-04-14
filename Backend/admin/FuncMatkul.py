@@ -34,3 +34,23 @@ def tampil_matkul():
     cursor.close()
     conn.close()
     return rows
+
+# update matkul untuk update data
+def update_matkul(id, nama_mapel, deskripsi, guru_pengampu, semester):
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+    query = f"""UPDATE mata_pelajaran SET nama_mapel='{nama_mapel}', deskripsi='{deskripsi}', guru_pengampu='{guru_pengampu}', semester='{semester}', updated_at=NOW() WHERE id={id}"""
+    cursor.execute(query)
+    conn.commit()
+    cursor.close()
+    conn.close()
+    
+# delete matkul
+def deleteMahasiswa(id):
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+    query = f"DELETE FROM mata_pelajaran WHERE id='{id}'"
+    cursor.execute(query)
+    conn.commit()
+    conn.close()
+    
