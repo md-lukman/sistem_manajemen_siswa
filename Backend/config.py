@@ -1,7 +1,7 @@
 
 db_config = {
     'host': 'localhost',
-    'user': '',
-    'password': '',
-    'database': ''
+    'user': 'lkmn',
+    'password': 'lukman123',
+    'database': 'manajemen_siswa'
 }

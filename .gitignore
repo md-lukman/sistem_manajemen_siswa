@@ -2,7 +2,7 @@
 venv/
 env/
 myenv/
-config
+config.py
 
 __pycache__/
 *.py[cod]
