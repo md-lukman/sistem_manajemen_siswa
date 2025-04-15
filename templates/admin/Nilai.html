@@ -260,26 +260,25 @@
 								  </tr>
 								</thead>
 								<tbody>
-								  {% for mapel in matkul %}
+								  {% for nilai in nilai %}
 								  <tr>
 									<td>{{ loop.index }}</td>
-									<td>{{ mapel[1] }}</td> 
-									<td>{{ mapel[2] }}</td> 
-									<td>{{ mapel[3] }}</td> 
-									<td>{{ mapel[4] }}</td>
-									<td>{{ mapel[5] }}</td> 
+									<td>{{ nilai[1] }}</td> 
+									<td>{{ nilai[2] }}</td> 
+									<td>{{ nilai[3] }}</td> 
+									<td>{{ nilai[4] }}</td>
 									
 									<td>
-									  <a href=""  title="Edit" data-toggle="modal" data-target="#editModal_{{mapel[0]}}">
+									  <a href=""  title="Edit" data-toggle="modal" data-target="#editModal_{{nilai[0]}}">
 										<i class="fas fa-edit fa-lg text-primary"></i>
 									  </a>
 									  &nbsp;
-									  <a href="/matkul/delete/{{ mapel[0] }}" title="Delete" onclick="return confirm('APAKAH ANDA YAKIN INGIN MENGHAPUS DATA INI?')">
+									  <a href="/matkul/delete/{{ nilai[0] }}" title="Delete" onclick="return confirm('APAKAH ANDA YAKIN INGIN MENGHAPUS DATA INI?')">
 										<i class="fas fa-trash fa-lg text-danger"></i>
 									  </a>
 									</td>
-									<td>{{ mapel[6] if mapel|length > 6 else '-' }}</td>
-									<td>{{ mapel[7] if mapel|length > 7 else '-' }}</td>
+									<td>{{ nilai[5] if nilai|length > 6 else '-' }}</td>
+									<td>{{ nilai[6] if nilai|length > 6 else '-' }}</td>
 	
 								  </tr>
 								  {% endfor %}
