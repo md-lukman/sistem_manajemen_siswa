@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from Backend.admin.FuncNilai import tambah_nilai
+from Backend.admin.FuncNilai import tambah_nilai, update_nilai
 
 
 nilai_bp = Blueprint('nilai_bp', __name__, url_prefix = '/nilai')
@@ -18,3 +18,15 @@ def createData():
     
         tambah_nilai(id_mahsis, id_matkul, nilai, semester)
         return redirect(url_for('siswa_bp.element'))
+    
+    
+@nilai_bp.route('/update/<int:id>', methods=['POST'])
+def edit(id):
+
+    id_mahsis = request.form['idMahasiswa']
+    id_matkul = request.form['idMatkul']
+    nilai = request.form['nilai']
+    semester = request.form['semester']
+
+    update_nilai(id, id_mahsis, id_matkul, nilai, semester)
+    return redirect(url_for('siswa_bp.element'))

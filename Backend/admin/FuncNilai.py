@@ -37,3 +37,13 @@ def tampil_nilai():
     conn.close()
     return rows
 
+# update matkul untuk update data
+def update_nilai(id, id_mahsis, id_matkul, nilai, semester):
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+    query = f"""UPDATE nilai SET id_mahsis='{id_mahsis}', id_matkul='{id_matkul}', nilai='{nilai}', semester='{semester}', updated_at=NOW() WHERE id={id}"""
+    cursor.execute(query)
+    conn.commit()
+    cursor.close()
+    conn.close()
+

@@ -205,7 +205,7 @@
 					  </div>
 					  <div class="modal-body">
 						<h4>Harap isi informasi berikut:</h4>
-						<form method="POST" action="/matkul/update/{{ nilai[0] }}" enctype="multipart/form-data">
+						<form method="POST" action="/nilai/update/{{ nilai[0] }}" enctype="multipart/form-data">
 	
 							<div class="mb-3" style="margin-top: 10px;">
 								<label for="idMatkul" class="form-label">Nama Matkul</label>
@@ -222,14 +222,16 @@
 	
 						<div class="mb-3" style="margin-top: 10px;">
 							<label for="idMahasiswa" class="form-label">Nama Mahasiswa</label>
-							<select class="form-control" id="idMatkul" name="idMatkul">
+							<select class="form-control" id="idMahasiswa" name="idMahasiswa">
 								<option value="" disabled>-- Pilih Mata Pelajaran --</option>
 								{% for sw in siswa %}
-								  <option value="{{ sw[1] }}" {% if sw[1] == nilai[2] %} selected {% endif %}>
+								  <option value="{{ sw[0] }}" {% if sw[0] == nilai[2] %} selected {% endif %}>
 									{{ sw[1] }}
 								  </option>
+								  print(siswa)
 								{% endfor %}
 							  </select> 
+							  
 					</div>
 						  
 						  <div class="mb-3" style="margin-top: 10px;">
