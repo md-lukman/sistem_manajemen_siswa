@@ -46,4 +46,14 @@ def update_nilai(id, id_mahsis, id_matkul, nilai, semester):
     conn.commit()
     cursor.close()
     conn.close()
+    
+    
+# delete mahasiswa
+def delete_nilai(id):
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+    query = f"DELETE FROM nilai WHERE id='{id}'"
+    cursor.execute(query)
+    conn.commit()
+    conn.close()
 

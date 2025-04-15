@@ -32,7 +32,8 @@ def element():
 
 @siswa_bp.route('/jadwal')
 def panels():
-    return render_template('/admin/jadwal.html')
+    data = tampil_matkul()
+    return render_template('/admin/jadwal.html', matkul=data)
 
 @siswa_bp.route('/create', methods=['POST'])
 def createData():
