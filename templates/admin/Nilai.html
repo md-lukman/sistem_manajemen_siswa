@@ -196,8 +196,8 @@
 	
 	
 			   
-				{% for mapel in matkul %}
-				<div class="modal fade" id="editModal_{{mapel[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				{% for nilai in nilai %}
+				<div class="modal fade" id="editModal_{{nilai[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				  <div class="modal-dialog modal-dialog-centered modal-lg">
 					<div class="modal-content">
 					  <div class="modal-header">
@@ -205,26 +205,41 @@
 					  </div>
 					  <div class="modal-body">
 						<h4>Harap isi informasi berikut:</h4>
-						<form method="POST" action="/matkul/update/{{ mapel[0] }}" enctype="multipart/form-data">
+						<form method="POST" action="/matkul/update/{{ nilai[0] }}" enctype="multipart/form-data">
 	
+							<div class="mb-3" style="margin-top: 10px;">
+								<label for="idMatkul" class="form-label">Nama Matkul</label>
+								<select class="form-control" id="idMatkul" name="idMatkul">
+									<option value="" disabled>-- Pilih Mata Pelajaran --</option>
+									{% for mapel in matkul %}
+									  <option value="{{ mapel[0] }}" {% if mapel[0] == nilai[1] %} selected {% endif %}>
+										{{ mapel[2] }}
+									  </option>
+									{% endfor %}
+								  </select> 
+						</div>
+							  
+	
+						<div class="mb-3" style="margin-top: 10px;">
+							<label for="idMahasiswa" class="form-label">Nama Mahasiswa</label>
+							<select class="form-control" id="idMatkul" name="idMatkul">
+								<option value="" disabled>-- Pilih Mata Pelajaran --</option>
+								{% for sw in siswa %}
+								  <option value="{{ sw[1] }}" {% if sw[1] == nilai[2] %} selected {% endif %}>
+									{{ sw[1] }}
+								  </option>
+								{% endfor %}
+							  </select> 
+					</div>
+						  
 						  <div class="mb-3" style="margin-top: 10px;">
-							<label for="namaMapel" class="form-label">Nama Mapel</label>
-							<input type="text" class="form-control" id="namaMapel" name="namaMapel" placeholder="Masukan mata kuliah" value="{{ mapel[2] }}"/>
+							<label for="nilai" class="form-label">Nilai (angka)</label>
+							<input type="number" class="form-control" id="nilai" placeholder="Masukan nilai mahasiswa" name="nilai" value="{{nilai[3]}}"/>
 						  </div>
 	
 						  <div class="mb-3" style="margin-top: 10px;">
-							<label for="deskripsi" class="form-label">Deskripsi</label>
-							<textarea class="form-control" id="deskripsi" name="deskripsi" placeholder="Tulis deskripsi mata pelajaran di sini" rows="4">{{ mapel[3] }}</textarea>
-						  </div>
-	
-						  <div class="mb-3" style="margin-top: 10px;">
-							<label for="guruPengampu" class="form-label">Guru Pengampu</label>
-							<input type="text" class="form-control" id="guruPengampu" placeholder="Masukan guru pengampu" name="guruPengampu" value="{{ mapel[4] }}"/>
-						  </div>
-	
-						 <div class="mb-3" style="margin-top: 10px;">
 							<label for="semester" class="form-label">Semester</label>
-							<input type="number" class="form-control" id="semester" placeholder="Masukan semester matkul" name="semester" value="{{ mapel[5] }}"/>
+							<input type="number" class="form-control" id="semester" placeholder="Masukan semester" name="semester" value="{{nilai[4]}}"/>
 						  </div>
 	
 						  <div class="modal-footer">

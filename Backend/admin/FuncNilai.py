@@ -36,3 +36,4 @@ def tampil_nilai():
     cursor.close()
     conn.close()
     return rows
+
