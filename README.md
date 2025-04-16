@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <td><img src="static/images/login.png" width="500"/></td>
+    <td><img src="static/images/login.png" width=""/></td>
     <td><img src="static/images/admin.png" width="500"/></td>
     <td><img src="static/images/form siswa.png" width="500"/></td>
     <td><img src="static/images/siswa.png" width="500"/></td>
