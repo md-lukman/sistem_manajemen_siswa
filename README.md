@@ -2,10 +2,13 @@
 
 <table>
   <tr>
-    <td><img src="static/images/login.png" width="300"/></td>
-    <td><img src="static/images/admin.png" width="300"/></td>
-    <td><img src="static/images/form siswa.png" width="300"/></td>
-    <td><img src="static/images/siswa.png" width="300"/></td>
+    <td><img src="static/images/login.png" width="400"/></td>
+    <td><img src="static/images/admin.png" width="400"/></td>
+    <td><img src="static/images/form siswa.png" width="400"/></td>
+    <td><img src="static/images/siswa.png" width="400"/></td>
+  </tr>
+  <tr>
+    <td><img src="static/images/userDashboard.png" width="300"/></td>
   </tr>
 </table>
 
