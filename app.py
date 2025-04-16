@@ -13,10 +13,14 @@ app = Flask(__name__)
 app.secret_key = 'tes123'
 
 
+# @app.route('/')
+# def login_form():
+#     return render_template('login.html')
+
+
 @app.route('/')
 def login_form():
-    return render_template('login.html')
-
+    return render_template('/user/index.html')
 
 app.register_blueprint(siswa_bp)
 app.register_blueprint(matkul_bp)
