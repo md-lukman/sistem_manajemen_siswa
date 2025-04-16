@@ -3,6 +3,7 @@ import os
 from Backend.admin.FuncSiswa import tampil_mahasiswa, tambah_mahasiswa, updateMahasiswa, deleteMahasiswa
 from Backend.admin.FuncMatkul import tampil_matkul
 from Backend.admin.FuncNilai import tampil_nilai
+from Backend.admin.FuncJadwal import tampil_jadwal
 
 
 siswa_bp = Blueprint('siswa_bp', __name__, url_prefix='/admin')
@@ -33,7 +34,8 @@ def element():
 @siswa_bp.route('/jadwal')
 def panels():
     data = tampil_matkul()
-    return render_template('/admin/jadwal.html', matkul=data)
+    jadwal = tampil_jadwal()
+    return render_template('/admin/jadwal.html', matkul=data, jadwal=jadwal)
 
 @siswa_bp.route('/create', methods=['POST'])
 def createData():

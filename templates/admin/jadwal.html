@@ -232,8 +232,8 @@
             </div>
 
 
-            {% for mhs in mahasiswa %}
-            <div class="modal fade" id="editModal_{{ mhs[2] }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            {% for jadwal in jadwal %}
+            <div class="modal fade" id="editModal_{{ jadwal[0] }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -241,35 +241,48 @@
                   </div>
                   <div class="modal-body">
                     <h4>Harap isi informasi berikut:</h4>
-                    <form method="POST" action="/admin/update/{{ mhs[0] }}" enctype="multipart/form-data">
+                    <form method="POST" action="/jadwal/update/{{ jadwal[0] }}" enctype="multipart/form-data">
                       <div class="mb-3" style="margin-top: 10px;">
-                        <label for="nama" class="form-label">Nama Mahasiswa</label>
-                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan nama mahasiswa" value="{{ mhs[1] }}"/>
-                      </div>
-                      <div class="mb-3" style="margin-top: 10px;">
-                        <label for="nim" class="form-label">Nim</label>
-                        <input type="number" class="form-control" id="nim" name="nim" placeholder="Masukan nim mahasiswa" value="{{ mhs[2] }}"/>
-                      </div>
-                      <div class="mb-3" style="margin-top: 10px;">
-                        <label for="jkelamin" class="form-label">Jenis Kelamin</label>
-                        <select class="form-control" id="jkelamin" name="jkelamin">
-                          <option value="">-- Pilih Jenis Kelamin --</option>
-                          <option value="L" {% if mhs[3] == 'L' %}selected{% endif %}>Laki-laki</option>
-                          <option value="P" {% if mhs[3] == 'P'%}selected{% endif %}>Perempuan</option>
+                        <label>Hari</label>
+                        <select name="hari" class="form-control">
+                          <option value="Senin" {% if jadwal[1] == "Senin" %} selected {% endif %}>Senin</option>
+                          <option value="Selasa" {% if jadwal[1] == "Selasa"%} selected{% endif %}>Selasa</option>
+                          <option value="Rabu" {% if jadwal[1] == "Rabu"%} selected{% endif %}>Rabu</option>
+                          <option value="Kamis" {% if jadwal[1] == "Kamis"%} selected{% endif %}>Kamis</option>
+                          <option value="Jumat" {% if jadwal[1] == "Jumat" %} selected {% endif %}>Jumat</option>
                         </select>
                       </div>
+
                       <div class="mb-3" style="margin-top: 10px;">
-                        <label for="prodi" class="form-label">Prodi</label>
-                        <input type="text" class="form-control" id="prodi" placeholder="Masukan prodi mahasiswa" name="prodi" value="{{ mhs[4] }}"/>
+                        <label for="jam" class="form-label">Jam</label>
+                        <input type="text" class="form-control" id="jam" name="jam" placeholder="Contoh: 08:00 - 10:00" value="{{ jadwal[2] }}"/>
                       </div>
+
+                      <div class="mb-3">
+                        <label for="id_matkul" class="form-label">Mata Kuliah</label>
+                        <select class="form-control" id="id_matkul" name="id_matkul" required>
+                          <option value="" disabled selected>-- Pilih Mata Pelajaran --</option>
+                          {% for mapel in matkul %}
+                          <option value="{{ mapel[0] }}" {% if mapel[2] == jadwal[3] %} selected {% endif %}>
+                            {{ mapel[2] }}
+                          </option>
+                          
+                          {% endfor %}
+                        </select>
+                      </div>
+                    
+
                       <div class="mb-3" style="margin-top: 10px;">
-                        <label for="alamat" class="form-label">Alamat</label>
-                        <input type="text" class="form-control" id="alamat" placeholder="Masukan alamat mahasiswa" name="alamat" value="{{ mhs[5] }}"/>
+                        <label for="semester" class="form-label">Semester</label>
+                        <input type="number" class="form-control" id="semester" placeholder="Masukan matkul semester" name="semester" value="{{ jadwal[5]}}"/>
                       </div>
+
                       <div class="mb-3" style="margin-top: 10px;">
-                        <label for="foto" class="form-label">Foto Profil</label>
-                        <input type="file" class="form-control" id="foto" name="foto" />
+                        <label for="ruangan" class="form-label">Ruangan</label>
+                        <input type="text" class="form-control" id="ruangan" placeholder="Masukan nama ruangan" name="ruangan" value="{{ jadwal[4] }}"/>
                       </div>
+
+                      
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -299,37 +312,28 @@
                                 <th>Semester</th>
                                 <th>Ruang</th>
                                 <th>Edit</th>
-                                
                               </tr>
                             </thead>
                             <tbody>
-                              {% for mhs in mahasiswa %}
+                              {% for jadwal in jadwal %}
                               <tr>
                                 <td>{{ loop.index }}</td>
-                                <td>{{ mhs[1] }}</td> 
-                                <td>{{ mhs[2] }}</td>  <!-- NIM -->
-                                <td>{{ mhs[3] }}</td>  <!-- Jenis Kelamin -->
-                                <td>{{ mhs[4] }}</td>  <!-- Prodi -->
-                                <td>{{ mhs[5] }}</td>  <!-- Alamat -->
-                                <td>
-                                  {% if mhs[6] %}
-                                  <img src="{{ url_for('static', filename='uploads/' ~ mhs[6]) }}" alt="Foto" width="45" >
-                                  {% else %}
-                                  Tidak ada foto
-                                  {% endif %}
-                                </td>
+                                <td>{{ jadwal[1] }}</td> 
+                                <td>{{ jadwal[2] }}</td>  <!-- NIM -->
+                                <td>{{ jadwal[3] }}</td>  <!-- Jenis Kelamin -->
+                                <td>{{ jadwal[4] }}</td>  <!-- Prodi -->
+                                <td>{{ jadwal[5] }}</td>  <!-- Alamat -->
+                            
                                 <td>
 
-                                  <a href=""  title="Edit" data-toggle="modal" data-target="#editModal_{{mhs[2]}}">
+                                  <a href=""  title="Edit" data-toggle="modal" data-target="#editModal_{{jadwal[0]}}">
                                     <i class="fas fa-edit fa-lg text-primary"></i>
                                   </a>
                                   &nbsp;
-                                  <a href="/admin/delete/{{ mhs[0] }}" title="Delete" onclick="return confirm('APAKAH ANDA YAKIN INGIN MENGHAPUS DATA INI?')">
+                                  <a href="/jadwal/delete/{{ jadwal[0] }}" title="Delete" onclick="return confirm('APAKAH ANDA YAKIN INGIN MENGHAPUS DATA INI?')">
                                     <i class="fas fa-trash fa-lg text-danger"></i>
                                   </a>
                                 </td>
-                                
-                                <td>{{ mhs[7] if mhs|length > 7 else '-' }}</td>  <!-- Updated_at -->
                               </tr>
                               {% endfor %}
                             </tbody>
