@@ -7,6 +7,7 @@ from Backend.routes.jadwalRoutes import jadwal_bp
 from Backend.routes.logout.logout import logout_bp
 from Backend.routes.login.login import login_bp
 from Backend.routes.Siswa.dashboardSiswa import userSiswa_bp
+from Backend.routes.Siswa.profileRoutes import profile_bp
 
 
 
@@ -30,6 +31,7 @@ app.register_blueprint(jadwal_bp)
 app.register_blueprint(logout_bp)
 app.register_blueprint(login_bp)
 app.register_blueprint(userSiswa_bp)
+app.register_blueprint(profile_bp)
 
 
 if __name__ == '__main__':

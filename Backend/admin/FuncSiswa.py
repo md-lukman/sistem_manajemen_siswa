@@ -43,9 +43,13 @@ def tampil_mahasiswa():
 
 
 # update mahasiswa untuk update data
-def updateMahasiswa(id, nama, nim, jk, prodi, alamat, foto, role):
+def updateMahasiswa(id, nama, nim, jk, prodi, alamat, foto, role=None, isAdmin=False):
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
+    
+    if not isAdmin:
+        role = "Mahasiswa"
+        
     if foto:
         query = f"""UPDATE mahasiswa SET nama='{nama}', nim='{nim}', jenis_kelamin='{jk}', prodi='{prodi}', alamat='{alamat}', foto='{foto}', role='{role}', updated_at=NOW() WHERE id={id}"""
     else:

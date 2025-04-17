@@ -2,7 +2,6 @@ import mysql.connector
 from Backend.config import db_config
 
 
-
 # read mahasiswanya
 def tampil_profile(user_id):
     conn = mysql.connector.connect(**db_config)
@@ -12,3 +11,6 @@ def tampil_profile(user_id):
     cursor.close()
     conn.close()
     return rows
+
+
+

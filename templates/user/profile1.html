@@ -755,7 +755,7 @@
                   </div>
 
                   <button
-                    @click="isProfileInfoModal = true"
+                    
                     class="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200 lg:inline-flex lg:w-auto"
                   >
                     <svg
@@ -884,7 +884,6 @@
                   </button>
                 </div>
               </div>
-              
             </div>
             {% endfor %}
           </div>
@@ -939,70 +938,10 @@
             Update your details to keep your profile up-to-date.
           </p>
         </div>
-
-        <form class="flex flex-col">
+        {% for siswa in profile %}
+        <form class="flex flex-col" method="POST" action="/profile/update/{{ siswa[0] }}" enctype="multipart/form-data">
           <div class="custom-scrollbar h-[450px] overflow-y-auto px-2">
-            <div>
-              <h5
-                class="mb-5 text-lg font-medium text-gray-800 dark:text-white/90 lg:mb-6"
-              >
-                Social Links
-              </h5>
-
-              <div class="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
-                <div>
-                  <label
-                    class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
-                  >
-                    Facebook
-                  </label>
-                  <input
-                    type="text"
-                    value="https://facebook.com/PimjoHQ"
-                    class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
-                  >
-                    X.com
-                  </label>
-                  <input
-                    type="text"
-                    value="https://x.com/PimjoHQ"
-                    class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
-                  >
-                    Linkedin
-                  </label>
-                  <input
-                    type="text"
-                    value="https://linkedin.com/PimjoHQ"
-                    class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
-                  >
-                    Instagram
-                  </label>
-                  <input
-                    type="text"
-                    value="https://instagram.com/PimjoHQ"
-                    class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
-                  />
-                </div>
-              </div>
-            </div>
+            
             <div class="mt-7">
               <h5
                 class="mb-5 text-lg font-medium text-gray-800 dark:text-white/90 lg:mb-6"
@@ -1015,24 +954,12 @@
                   <label
                     class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
                   >
-                    First Name
+                    Nama lengkap
                   </label>
                   <input
                     type="text"
-                    value="Musharof"
-                    class="dark:bg-dark-900 h-11 w-full rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
-                  />
-                </div>
-
-                <div class="col-span-2 lg:col-span-1">
-                  <label
-                    class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
-                  >
-                    Last Name
-                  </label>
-                  <input
-                    type="text"
-                    value="Chowdhury"
+                    value="{{ siswa[1] }}"
+                    name="nama"
                     class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                   />
                 </div>
@@ -1041,11 +968,43 @@
                   <label
                     class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
                   >
-                    Email Address
+                    Nim
                   </label>
                   <input
                     type="text"
-                    value="randomuser@pimjo.com"
+                    value="{{siswa[2]}}"
+                    name="nim"
+                    class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
+                  />
+                </div>
+
+                <div class="col-span-2 lg:col-span-1 relative">
+                  <label
+                    class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
+                  >
+                    Jenis Kelamin
+                  </label>
+                  <select
+                    name="jk"
+                    class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 pr-10 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
+                  >
+                    <option value="L" {% if siswa[3] == "L" %}selected{% endif %}>Laki - Laki</option>
+                    <option value="P" {% if siswa[3] == "P" %}selected{% endif %}>Perempuan</option>
+                  </select>
+
+                </div>
+                
+
+                <div class="col-span-2 lg:col-span-1">
+                  <label
+                    class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
+                  >
+                    Prodi
+                  </label>
+                  <input
+                    type="text"
+                    value="{{siswa[4]}}"
+                    name="prodi"
                     class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                   />
                 </div>
@@ -1054,24 +1013,25 @@
                   <label
                     class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
                   >
-                    Phone
+                    Alamat
                   </label>
                   <input
                     type="text"
-                    value="+09 363 398 46"
+                    value="{{siswa[5]}}"
+                    name="alamat"
                     class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                   />
                 </div>
 
-                <div class="col-span-2">
+                <div class="col-span-2 lg:col-span-1">
                   <label
                     class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
                   >
-                    Bio
+                    Foto profile
                   </label>
                   <input
-                    type="text"
-                    value="Team Manager"
+                    type="file"
+                    name="foto"
                     class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                   />
                 </div>
@@ -1087,13 +1047,14 @@
               Close
             </button>
             <button
-              type="button"
+              type="submit"
               class="flex w-full justify-center rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-600 sm:w-auto"
             >
               Save Changes
             </button>
           </div>
         </form>
+        {% endfor %}
       </div>
     </div>
     <div
