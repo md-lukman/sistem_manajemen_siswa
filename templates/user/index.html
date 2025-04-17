@@ -394,7 +394,12 @@
                   @click.prevent="dropdownOpen = ! dropdownOpen"
                 >
                   <span class="mr-3 h-11 w-11 overflow-hidden rounded-full">
-                    <img src="/static/images/user/profile.webp" alt="User" />
+                    {% if siswa[6] %}
+                    <img
+                      src="{{ url_for('static', filename='uploads/' ~ siswa[6]) }}"
+                      alt="Foto"
+                    />
+                    {% else %} Tidak ada foto {% endif %}
                   </span>
 
                   <span class="text-theme-sm mr-1 block font-medium">
