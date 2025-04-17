@@ -45,6 +45,7 @@ def createData():
         jenisKelamin = request.form.get('jkelamin')
         prodi = request.form.get('prodi')
         alamat = request.form.get('alamat')
+        role = request.form.get('role')
         foto = request.files.get('foto')
         
         UPLOAD_FOLDER = os.path.join('static', 'uploads')
@@ -55,7 +56,7 @@ def createData():
         else:
             foto_nama = None
     
-        tambah_mahasiswa(nama, nim, jenisKelamin, prodi, alamat, foto_nama)
+        tambah_mahasiswa(nama, nim, jenisKelamin, prodi, alamat, foto_nama, role)
         return redirect(url_for('siswa_bp.siswa'))
     
 
@@ -71,6 +72,7 @@ def edit(id):
     jk = request.form['jkelamin']
     prodi = request.form['prodi']
     alamat = request.form['alamat']
+    role = request.form.get('role')
     foto = request.files.get('foto')
     
     UPLOAD_FOLDER = os.path.join('static', 'uploads')
@@ -81,7 +83,7 @@ def edit(id):
     else:
         foto_nama = None
         
-    updateMahasiswa(id, nama, nim, jk, prodi, alamat, foto_nama)
+    updateMahasiswa(id, nama, nim, jk, prodi, alamat, foto_nama, role)
     return redirect(url_for('siswa_bp.siswa'))
 
 

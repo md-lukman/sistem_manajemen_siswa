@@ -7,14 +7,15 @@
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title> </title>
+    <title>Profile | TailAdmin - Tailwind CSS Admin Dashboard Template</title>
+    <link rel="icon" href="favicon.ico" />
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
     />
   </head>
   <body
-    x-data="{ page: 'ecommerce', 'loaded': true, 'darkMode': false, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+    x-data="{ page: 'profile', 'loaded': true, 'darkMode': false, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false, 'isProfileInfoModal': false, 'isProfileAddressModal': false }"
     x-init="
          darkMode = JSON.parse(localStorage.getItem('darkMode'));
          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
@@ -221,6 +222,65 @@
             <div
               class="flex w-full items-center justify-between gap-2 border-b border-gray-200 px-3 py-3 sm:gap-4 lg:justify-normal lg:border-b-0 lg:px-0 lg:py-4 dark:border-gray-800"
             >
+              <!-- Hamburger Toggle BTN -->
+              <button
+                :class="sidebarToggle ? 'lg:bg-transparent dark:lg:bg-transparent bg-gray-100 dark:bg-gray-800' : ''"
+                class="z-99999 flex h-10 w-10 items-center justify-center rounded-lg border-gray-200 text-gray-500 lg:h-11 lg:w-11 lg:border dark:border-gray-800 dark:text-gray-400"
+                @click.stop="sidebarToggle = !sidebarToggle"
+              >
+                <svg
+                  class="hidden fill-current lg:block"
+                  width="16"
+                  height="12"
+                  viewBox="0 0 16 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M0.583252 1C0.583252 0.585788 0.919038 0.25 1.33325 0.25H14.6666C15.0808 0.25 15.4166 0.585786 15.4166 1C15.4166 1.41421 15.0808 1.75 14.6666 1.75L1.33325 1.75C0.919038 1.75 0.583252 1.41422 0.583252 1ZM0.583252 11C0.583252 10.5858 0.919038 10.25 1.33325 10.25L14.6666 10.25C15.0808 10.25 15.4166 10.5858 15.4166 11C15.4166 11.4142 15.0808 11.75 14.6666 11.75L1.33325 11.75C0.919038 11.75 0.583252 11.4142 0.583252 11ZM1.33325 5.25C0.919038 5.25 0.583252 5.58579 0.583252 6C0.583252 6.41421 0.919038 6.75 1.33325 6.75L7.99992 6.75C8.41413 6.75 8.74992 6.41421 8.74992 6C8.74992 5.58579 8.41413 5.25 7.99992 5.25L1.33325 5.25Z"
+                    fill
+                  />
+                </svg>
+
+                <svg
+                  :class="sidebarToggle ? 'hidden' : 'block lg:hidden'"
+                  class="fill-current lg:hidden"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M3.25 6C3.25 5.58579 3.58579 5.25 4 5.25L20 5.25C20.4142 5.25 20.75 5.58579 20.75 6C20.75 6.41421 20.4142 6.75 20 6.75L4 6.75C3.58579 6.75 3.25 6.41422 3.25 6ZM3.25 18C3.25 17.5858 3.58579 17.25 4 17.25L20 17.25C20.4142 17.25 20.75 17.5858 20.75 18C20.75 18.4142 20.4142 18.75 20 18.75L4 18.75C3.58579 18.75 3.25 18.4142 3.25 18ZM4 11.25C3.58579 11.25 3.25 11.5858 3.25 12C3.25 12.4142 3.58579 12.75 4 12.75L12 12.75C12.4142 12.75 12.75 12.4142 12.75 12C12.75 11.5858 12.4142 11.25 12 11.25L4 11.25Z"
+                    fill
+                  />
+                </svg>
+
+                <!-- cross icon -->
+                <svg
+                  :class="sidebarToggle ? 'block lg:hidden' : 'hidden'"
+                  class="fill-current"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M6.21967 7.28131C5.92678 6.98841 5.92678 6.51354 6.21967 6.22065C6.51256 5.92775 6.98744 5.92775 7.28033 6.22065L11.999 10.9393L16.7176 6.22078C17.0105 5.92789 17.4854 5.92788 17.7782 6.22078C18.0711 6.51367 18.0711 6.98855 17.7782 7.28144L13.0597 12L17.7782 16.7186C18.0711 17.0115 18.0711 17.4863 17.7782 17.7792C17.4854 18.0721 17.0105 18.0721 16.7176 17.7792L11.999 13.0607L7.28033 17.7794C6.98744 18.0722 6.51256 18.0722 6.21967 17.7794C5.92678 17.4865 5.92678 17.0116 6.21967 16.7187L10.9384 12L6.21967 7.28131Z"
+                    fill
+                  />
+                </svg>
+              </button>
+              <!-- Hamburger Toggle BTN -->
+
               <a href="index.html" class="lg:hidden">
                 <img
                   class="dark:hidden"
@@ -252,7 +312,7 @@
                     fill-rule="evenodd"
                     clip-rule="evenodd"
                     d="M5.99902 10.4951C6.82745 10.4951 7.49902 11.1667 7.49902 11.9951V12.0051C7.49902 12.8335 6.82745 13.5051 5.99902 13.5051C5.1706 13.5051 4.49902 12.8335 4.49902 12.0051V11.9951C4.49902 11.1667 5.1706 10.4951 5.99902 10.4951ZM17.999 10.4951C18.8275 10.4951 19.499 11.1667 19.499 11.9951V12.0051C19.499 12.8335 18.8275 13.5051 17.999 13.5051C17.1706 13.5051 16.499 12.8335 16.499 12.0051V11.9951C16.499 11.1667 17.1706 10.4951 17.999 10.4951ZM13.499 11.9951C13.499 11.1667 12.8275 10.4951 11.999 10.4951C11.1706 10.4951 10.499 11.1667 10.499 11.9951V12.0051C10.499 12.8335 11.1706 13.5051 11.999 13.5051C12.8275 13.5051 13.499 12.8335 13.499 12.0051V11.9951Z"
-                    fill=""
+                    fill
                   />
                 </svg>
               </button>
@@ -274,7 +334,7 @@
                           fill-rule="evenodd"
                           clip-rule="evenodd"
                           d="M3.04175 9.37363C3.04175 5.87693 5.87711 3.04199 9.37508 3.04199C12.8731 3.04199 15.7084 5.87693 15.7084 9.37363C15.7084 12.8703 12.8731 15.7053 9.37508 15.7053C5.87711 15.7053 3.04175 12.8703 3.04175 9.37363ZM9.37508 1.54199C5.04902 1.54199 1.54175 5.04817 1.54175 9.37363C1.54175 13.6991 5.04902 17.2053 9.37508 17.2053C11.2674 17.2053 13.003 16.5344 14.357 15.4176L17.177 18.238C17.4699 18.5309 17.9448 18.5309 18.2377 18.238C18.5306 17.9451 18.5306 17.4703 18.2377 17.1774L15.418 14.3573C16.5365 13.0033 17.2084 11.2669 17.2084 9.37363C17.2084 5.04817 13.7011 1.54199 9.37508 1.54199Z"
-                          fill=""
+                          fill
                         />
                       </svg>
                     </span>
@@ -389,11 +449,16 @@
                   @click.prevent="dropdownOpen = ! dropdownOpen"
                 >
                   <span class="mr-3 h-11 w-11 overflow-hidden rounded-full">
-                    <img src="/static/images/user/profile.webp" alt="User" />
+                    {% if siswa[6] %}
+                    <img
+                      src="{{ url_for('static', filename='uploads/' ~ siswa[6]) }}"
+                      alt="Foto"
+                    />
+                    {% else %} Tidak ada foto {% endif %}
                   </span>
 
                   <span class="text-theme-sm mr-1 block font-medium">
-                    Adolf Hitler
+                    {{ siswa[1] }}
                   </span>
 
                   <svg
@@ -562,7 +627,8 @@
               </div>
             </div>
             <!-- Breadcrumb End -->
-            {% for siswa in profile%}
+
+            {% for siswa in profile %}
             <div
               class="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6"
             >
@@ -584,7 +650,12 @@
                     <div
                       class="w-20 h-20 overflow-hidden border border-gray-200 rounded-full dark:border-gray-800"
                     >
-                      <img src="/static/images/user/profile.webp" alt="user" />
+                      {% if siswa[6] %}
+                      <img
+                        src="{{ url_for('static', filename='uploads/' ~ siswa[6]) }}"
+                        alt="Foto"
+                      />
+                      {% else %} Tidak ada foto {% endif %}
                     </div>
                     <div class="order-3 xl:order-2">
                       <h4
@@ -596,13 +667,13 @@
                         class="flex flex-col items-center gap-1 text-center xl:flex-row xl:gap-3 xl:text-left"
                       >
                         <p class="text-sm text-gray-500 dark:text-gray-400">
-                          Team Manager
+                          {{ siswa[2] }}
                         </p>
                         <div
                           class="hidden h-3.5 w-px bg-gray-300 dark:bg-gray-700 xl:block"
                         ></div>
                         <p class="text-sm text-gray-500 dark:text-gray-400">
-                          Arizona, United States
+                          {{siswa[5]}}
                         </p>
                       </div>
                     </div>
@@ -684,6 +755,7 @@
                   </div>
 
                   <button
+                    @click="isProfileInfoModal = true"
                     class="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200 lg:inline-flex lg:w-auto"
                   >
                     <svg
@@ -731,7 +803,7 @@
                         <p
                           class="text-sm font-medium text-gray-800 dark:text-white/90"
                         >
-                          {{ siswa[1] }}
+                          {{siswa[1]}}
                         </p>
                       </div>
 
@@ -744,7 +816,7 @@
                         <p
                           class="text-sm font-medium text-gray-800 dark:text-white/90"
                         >
-                          {{ siswa[2] }}
+                          {{siswa[2]}}
                         </p>
                       </div>
 
@@ -757,7 +829,7 @@
                         <p
                           class="text-sm font-medium text-gray-800 dark:text-white/90"
                         >
-                          {{ siswa[3] }}
+                          {{siswa[3]}}
                         </p>
                       </div>
 
@@ -770,69 +842,27 @@
                         <p
                           class="text-sm font-medium text-gray-800 dark:text-white/90"
                         >
-                          {{ siswa[4] }}
+                          {{siswa[4]}}
                         </p>
                       </div>
-                    </div>
-                  </div>
 
-                  <button
-                    type="button"
-                    data-toggle="modal"
-                    data-target="#isProfileInfoModal"
-                    class="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200 lg:inline-flex lg:w-auto"
-                  >
-                    <svg
-                      class="fill-current"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 18 18"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M15.0911 2.78206C14.2125 1.90338 12.7878 1.90338 11.9092 2.78206L4.57524 10.116C4.26682 10.4244 4.0547 10.8158 3.96468 11.2426L3.31231 14.3352C3.25997 14.5833 3.33653 14.841 3.51583 15.0203C3.69512 15.1996 3.95286 15.2761 4.20096 15.2238L7.29355 14.5714C7.72031 14.4814 8.11172 14.2693 8.42013 13.9609L15.7541 6.62695C16.6327 5.74827 16.6327 4.32365 15.7541 3.44497L15.0911 2.78206ZM12.9698 3.84272C13.2627 3.54982 13.7376 3.54982 14.0305 3.84272L14.6934 4.50563C14.9863 4.79852 14.9863 5.2734 14.6934 5.56629L14.044 6.21573L12.3204 4.49215L12.9698 3.84272ZM11.2597 5.55281L5.6359 11.1766C5.53309 11.2794 5.46238 11.4099 5.43238 11.5522L5.01758 13.5185L6.98394 13.1037C7.1262 13.0737 7.25666 13.003 7.35947 12.9002L12.9833 7.27639L11.2597 5.55281Z"
-                        fill
-                      />
-                    </svg>
-                    Edit
-                  </button>
-                </div>
-              </div>
-              <div
-                class="p-5 border border-gray-200 rounded-2xl dark:border-gray-800 lg:p-6"
-              >
-                <div
-                  class="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between"
-                >
-                  <div>
-                    <h4
-                      class="text-lg font-semibold text-gray-800 dark:text-white/90 lg:mb-6"
-                    >
-                      Address
-                    </h4>
-
-                    <div
-                      class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-7 2xl:gap-x-32"
-                    >
                       <div>
                         <p
                           class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400"
                         >
-                          Country
+                          Alamat
                         </p>
                         <p
                           class="text-sm font-medium text-gray-800 dark:text-white/90"
                         >
-                          {{ siswa[5] }}
+                          {{siswa[5]}}
                         </p>
                       </div>
                     </div>
                   </div>
 
                   <button
+                    @click="isProfileInfoModal = true"
                     class="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200 lg:inline-flex lg:w-auto"
                   >
                     <svg
@@ -854,6 +884,7 @@
                   </button>
                 </div>
               </div>
+              
             </div>
             {% endfor %}
           </div>
@@ -864,12 +895,9 @@
     </div>
     <!-- ===== Page Wrapper End ===== -->
 
+    <!-- BEGIN MODAL -->
     <div
-      id="isProfileInfoModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
+      x-show="isProfileInfoModal"
       class="fixed inset-0 flex items-center justify-center p-5 overflow-y-auto z-99999"
     >
       <div
@@ -1068,9 +1096,124 @@
         </form>
       </div>
     </div>
+    <div
+      x-show="isProfileAddressModal"
+      class="fixed inset-0 flex items-center justify-center p-5 overflow-y-auto z-99999"
+    >
+      <div
+        class="modal-close-btn fixed inset-0 h-full w-full bg-gray-400/50 backdrop-blur-[32px]"
+      ></div>
+      <div
+        @click.outside="isProfileAddressModal = false"
+        class="no-scrollbar relative flex w-full max-w-[700px] flex-col overflow-y-auto rounded-3xl bg-white p-6 dark:bg-gray-900 lg:p-11"
+      >
+        <!-- close btn -->
+        <button
+          @click="isProfileAddressModal = false"
+          class="transition-color absolute right-5 top-5 z-999 flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-gray-600 dark:bg-gray-700 dark:bg-white/[0.05] dark:text-gray-400 dark:hover:bg-white/[0.07] dark:hover:text-gray-300"
+        >
+          <svg
+            class="fill-current"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M6.04289 16.5418C5.65237 16.9323 5.65237 17.5655 6.04289 17.956C6.43342 18.3465 7.06658 18.3465 7.45711 17.956L11.9987 13.4144L16.5408 17.9565C16.9313 18.347 17.5645 18.347 17.955 17.9565C18.3455 17.566 18.3455 16.9328 17.955 16.5423L13.4129 12.0002L17.955 7.45808C18.3455 7.06756 18.3455 6.43439 17.955 6.04387C17.5645 5.65335 16.9313 5.65335 16.5408 6.04387L11.9987 10.586L7.45711 6.04439C7.06658 5.65386 6.43342 5.65386 6.04289 6.04439C5.65237 6.43491 5.65237 7.06808 6.04289 7.4586L10.5845 12.0002L6.04289 16.5418Z"
+              fill
+            />
+          </svg>
+        </button>
 
+        <div class="px-2 pr-14">
+          <h4
+            class="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90"
+          >
+            Edit Address
+          </h4>
+          <p class="mb-6 text-sm text-gray-500 dark:text-gray-400 lg:mb-7">
+            Update your details to keep your profile up-to-date.
+          </p>
+        </div>
+        <form class="flex flex-col">
+          <div class="px-2 overflow-y-auto custom-scrollbar">
+            <div class="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
+              <div>
+                <label
+                  class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
+                >
+                  Country
+                </label>
+                <input
+                  type="text"
+                  value="United States"
+                  class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
+                />
+              </div>
+
+              <div>
+                <label
+                  class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
+                >
+                  City/State
+                </label>
+                <input
+                  type="text"
+                  value="Arizona, United States"
+                  class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
+                />
+              </div>
+
+              <div>
+                <label
+                  class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
+                >
+                  Postal Code
+                </label>
+                <input
+                  type="text"
+                  value="ERT 2489"
+                  class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
+                />
+              </div>
+
+              <div>
+                <label
+                  class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
+                >
+                  TAX ID
+                </label>
+                <input
+                  type="text"
+                  value="AS4568384"
+                  class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 mt-6 lg:justify-end">
+            <button
+              @click="isProfileAddressModal = false"
+              type="button"
+              class="flex w-full justify-center rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] sm:w-auto"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="flex w-full justify-center rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-600 sm:w-auto"
+            >
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- END MODAL -->
     <script src="{{ url_for('static', filename='js/bundle.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

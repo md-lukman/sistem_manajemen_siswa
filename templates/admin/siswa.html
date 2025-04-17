@@ -207,10 +207,21 @@
                         <label for="prodi" class="form-label">Prodi</label>
                         <input type="text" class="form-control" id="prodi" placeholder="Masukan prodi mahasiswa" name="prodi"/>
                       </div>
+
                       <div class="mb-3" style="margin-top: 10px;">
                         <label for="alamat" class="form-label">Alamat</label>
                         <input type="text" class="form-control" id="alamat" placeholder="Masukan alamat mahasiswa" name="alamat"/>
                       </div>
+
+                      <div class="mb-3" style="margin-top: 10px;">
+                        <label for="role" class="form-label">Role</label>
+                        <select class="form-control" id="role" name="role">
+                          <option value="">-- Pilih Jenis Role--</option>
+                          <option value="mahasiswa">Mahasiswa</option>
+                          <option value="admin">Admin</option>
+                        </select>
+                      </div>
+
                       <div class="mb-3" style="margin-top: 10px;">
                         <label for="foto" class="form-label">Foto Profil</label>
                         <input type="file" class="form-control" id="foto" name="foto" />
@@ -260,6 +271,16 @@
                         <label for="alamat" class="form-label">Alamat</label>
                         <input type="text" class="form-control" id="alamat" placeholder="Masukan alamat mahasiswa" name="alamat" value="{{ mhs[5] }}"/>
                       </div>
+
+                      <div class="mb-3" style="margin-top: 10px;">
+                        <label for="role" class="form-label">Role</label>
+                        <select class="form-control" id="role" name="role">
+                          <option value="">-- Pilih Jenis Role --</option>
+                          <option value="Mahasiswa" {% if mhs[9] == 'mahasiswa' %}selected{% endif %}>Mahasiswa</option>
+                          <option value="Admin" {% if mhs[9] == 'admin'%}selected{% endif %}>Admin</option>
+                        </select>
+                      </div>
+
                       <div class="mb-3" style="margin-top: 10px;">
                         <label for="foto" class="form-label">Foto Profil</label>
                         <input type="file" class="form-control" id="foto" name="foto" />
@@ -292,6 +313,7 @@
                                 <th>Jenis Kelamin</th>
                                 <th>Prodi</th>
                                 <th>Alamat</th>
+                                <th>Role</th>
                                 <th>Foto</th>
                                 <th>Edit</th>
                                 <th>Updated</th>
@@ -306,6 +328,7 @@
                                 <td>{{ mhs[3] }}</td>  <!-- Jenis Kelamin -->
                                 <td>{{ mhs[4] }}</td>  <!-- Prodi -->
                                 <td>{{ mhs[5] }}</td>  <!-- Alamat -->
+                                <td>{{ mhs[9] }}</td>
                                 <td>
                                   {% if mhs[6] %}
                                   <img src="{{ url_for('static', filename='uploads/' ~ mhs[6]) }}" alt="Foto" width="45" >

@@ -2,11 +2,11 @@ import mysql.connector
 from Backend.config import db_config
 
 
-def handle_login(username, password):
+def handle_login(nama, nim):
     try:
         conn = mysql.connector.connect(**db_config)
         cursor = conn.cursor(dictionary=True)
-        query = f"SELECT * FROM user WHERE username = '{username}' AND password = '{password}'"
+        query = f"SELECT * FROM mahasiswa WHERE nama = '{nama}' AND nim = '{nim}'"
         cursor.execute(query)
         user = cursor.fetchone()
         cursor.close()
@@ -21,10 +21,10 @@ def handle_login(username, password):
 
 
 # create mahasiswa
-def tambah_mahasiswa(nama, nim, jenisKelamin, prodi, alamat, foto):
+def tambah_mahasiswa(nama, nim, jenisKelamin, prodi, alamat, foto, role):
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
-    query = f"INSERT INTO mahasiswa (nama, nim, jenis_kelamin, prodi, alamat, foto) VALUES ('{nama}', '{nim}','{jenisKelamin}','{prodi}', '{alamat}', '{foto}')"
+    query = f"INSERT INTO mahasiswa (nama, nim, jenis_kelamin, prodi, alamat, foto, role) VALUES ('{nama}', '{nim}','{jenisKelamin}','{prodi}', '{alamat}', '{foto}', '{role}')"
     cursor.execute(query)
     conn.commit()
     cursor.close()
@@ -43,13 +43,13 @@ def tampil_mahasiswa():
 
 
 # update mahasiswa untuk update data
-def updateMahasiswa(id, nama, nim, jk, prodi, alamat, foto):
+def updateMahasiswa(id, nama, nim, jk, prodi, alamat, foto, role):
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
     if foto:
-        query = f"""UPDATE mahasiswa SET nama='{nama}', nim='{nim}', jenis_kelamin='{jk}', prodi='{prodi}', alamat='{alamat}', foto='{foto}', updated_at=NOW() WHERE id={id}"""
+        query = f"""UPDATE mahasiswa SET nama='{nama}', nim='{nim}', jenis_kelamin='{jk}', prodi='{prodi}', alamat='{alamat}', foto='{foto}', role='{role}', updated_at=NOW() WHERE id={id}"""
     else:
-        query = f"""UPDATE mahasiswa SET nama='{nama}', nim='{nim}',jenis_kelamin='{jk}', prodi='{prodi}', alamat='{alamat}', updated_at=NOW() WHERE id={id}"""
+        query = f"""UPDATE mahasiswa SET nama='{nama}', nim='{nim}',jenis_kelamin='{jk}', prodi='{prodi}', alamat='{alamat}', role='{role}', updated_at=NOW() WHERE id={id}"""
 
     cursor.execute(query)
     conn.commit()
