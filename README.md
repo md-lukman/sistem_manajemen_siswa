@@ -1,5 +1,6 @@
 <h2>📸 Tampilan Aplikasi</h2>
 
+<h3>🛠️ Tampilan Admin</h3>
 <table>
   <tr>
     <td><img src="static/images/login.png" width="500"/></td>
@@ -7,10 +8,15 @@
     <td><img src="static/images/form siswa.png" width="500"/></td>
     <td><img src="static/images/siswa.png" width="500"/></td>
   </tr>
+</table>
+
+<h3>🙋‍♂️ Tampilan User</h3>
+<table>
   <tr>
     <td><img src="static/images/userDashboard.png" width="500"/></td>
   </tr>
 </table>
+
 
 
 ## Project Structure
