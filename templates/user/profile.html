@@ -95,13 +95,12 @@
                 <!-- Menu Item Dashboard -->
                 <li>
                   <a
-                    href="#"
-                    @click.prevent="selected = (selected === 'Dashboard' ? '':'Dashboard')"
+                    href="/siswa/index"
                     class="menu-item group"
-                    :class=" (selected === '') || (page === 'ecommerce' || page === 'analytics' || page === 'marketing' || page === 'crm' || page === 'stocks') ? 'menu-item-active' : 'menu-item-inactive'"
+                    :class=" 'menu-item-inactive'"
                   >
                     <svg
-                      :class="(selected === 'Dashboard') || (page === 'ecommerce' || page === 'analytics' || page === 'marketing' || page === 'crm' || page === 'stocks') ? 'menu-item-icon-active'  :'menu-item-icon-inactive'"
+                      :class="'menu-item-icon-inactive'"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
@@ -129,7 +128,7 @@
                 <!-- Menu Item Calendar -->
                 <li>
                   <a
-                    href="calendar.html"
+                    href="/siswa/index"
                     @click="selected = (selected === 'Calendar' ? '':'Calendar')"
                     class="menu-item group"
                     :class=" (selected === 'Calendar') && (page === 'calendar') ? 'menu-item-active' : 'menu-item-inactive'"
@@ -533,7 +532,7 @@
                     <li>
                       <a
                         class="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400"
-                        href="index.html"
+                        href="/siswa/index"
                       >
                         Home
                         <svg
