@@ -20,3 +20,10 @@ def edit_profile():
     user_id = session.get('user_id')
     data = tampil_profile(user_id)
     return render_template('/user/profile1.html', profile=data)
+
+
+@userSiswa_bp.route('/nilai')
+def nilai_siswa():
+    user_id = session.get('user_id')
+    data = tampil_profile(user_id)
+    return render_template('/user/nilaiSiswa.html', profile=data)

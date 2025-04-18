@@ -175,10 +175,25 @@
 					</div>
 						  
 						  <div class="mb-3" style="margin-top: 10px;">
-							<label for="nilai" class="form-label">Nilai (angka)</label>
-							<input type="number" class="form-control" id="nilai" placeholder="Masukan nilai mahasiswa" name="nilai"/>
+							<label for="tugas" class="form-label">Tugas</label>
+							<input type="number" class="form-control" id="tugas" placeholder="Masukan nilai tugas mahasiswa" name="tugas"/>
 						  </div>
-	
+
+						  <div class="mb-3" style="margin-top: 10px;">
+							<label for="uts" class="form-label">UTS</label>
+							<input type="number" class="form-control" id="uts" placeholder="Masukan nilai uts mahasiswa" name="uts"/>
+						  </div>
+
+						  <div class="mb-3" style="margin-top: 10px;">
+							<label for="uas" class="form-label">UAS</label>
+							<input type="number" class="form-control" id="uas" placeholder="Masukan nilai uas mahasiswa" name="uas"/>
+						  </div>
+						  
+						  <div class="mb-3" style="margin-top: 10px;">
+							<label for="nilai_akhir" class="form-label">Nilai Akhir</label>
+							<input type="number" class="form-control" id="nilai_akhir" placeholder="Masukan nilai akhir mahasiswa" name="nilai_akhir"/>
+						  </div>
+
 						  <div class="mb-3" style="margin-top: 10px;">
 							<label for="semester" class="form-label">Semester</label>
 							<input type="number" class="form-control" id="semester" placeholder="Masukan semester" name="semester"/>
@@ -234,14 +249,29 @@
 						</div>
 							  
 	
+						<div class="mb-3" style="margin-top: 10px;">
+							<label for="tugas" class="form-label">Tugas</label>
+							<input type="number" class="form-control" id="tugas" placeholder="Masukan nilai tugas mahasiswa" name="tugas" value="{{nilai[3]}}"/>
+						  </div>
+
 						  <div class="mb-3" style="margin-top: 10px;">
-							<label for="nilai" class="form-label">Nilai (angka)</label>
-							<input type="number" class="form-control" id="nilai" placeholder="Masukan nilai mahasiswa" name="nilai" value="{{nilai[3]}}"/>
+							<label for="uts" class="form-label">UTS</label>
+							<input type="number" class="form-control" id="uts" placeholder="Masukan nilai uts mahasiswa" name="uts" value="{{nilai[4]}}"/>
+						  </div>
+
+						  <div class="mb-3" style="margin-top: 10px;">
+							<label for="uas" class="form-label">UAS</label>
+							<input type="number" class="form-control" id="uas" placeholder="Masukan nilai uas mahasiswa" name="uas" value="{{nilai[5]}}"/>
+						  </div>
+						  
+						  <div class="mb-3" style="margin-top: 10px;">
+							<label for="nilai_akhir" class="form-label">Nilai Akhir</label>
+							<input type="number" class="form-control" id="nilai_akhir" placeholder="Masukan nilai akhir mahasiswa" name="nilai_akhir" value="{{nilai[6]}}"/>
 						  </div>
 	
 						  <div class="mb-3" style="margin-top: 10px;">
 							<label for="semester" class="form-label">Semester</label>
-							<input type="number" class="form-control" id="semester" placeholder="Masukan semester" name="semester" value="{{nilai[4]}}"/>
+							<input type="number" class="form-control" id="semester" placeholder="Masukan semester" name="semester" value="{{nilai[7]}}"/>
 						  </div>
 	
 						  <div class="modal-footer">
@@ -269,7 +299,10 @@
 									<th>No</th>
 									<th>Nama mahasiswa</th>
 									<th>Nama Matkul</th>
-									<th>Nilai</th>
+									<th>Tugas</th>
+									<th>UTS</th>
+									<th>UAS</th>
+									<th>Nilai Akhir</th>
 									<th>Semester</th>
 									<th>Edit</th>
 									<th>Tanggal input</th>
@@ -284,6 +317,9 @@
 									<td>{{ nilai[2] }}</td> 
 									<td>{{ nilai[3] }}</td> 
 									<td>{{ nilai[4] }}</td>
+									<td>{{ nilai[5] }}</td>
+									<td>{{ nilai[6] }}</td>
+									<td>{{ nilai[7] }}</td>
 									
 									<td>
 									  <a href=""  title="Edit" data-toggle="modal" data-target="#editModal_{{nilai[0]}}">
@@ -294,8 +330,8 @@
 										<i class="fas fa-trash fa-lg text-danger"></i>
 									  </a>
 									</td>
-									<td>{{ nilai[5] if nilai|length > 6 else '-' }}</td>
-									<td>{{ nilai[6] if nilai|length > 6 else '-' }}</td>
+									<td>{{ nilai[8] if nilai|length > 6 else '-' }}</td>
+									<td>{{ nilai[9] if nilai|length > 6 else '-' }}</td>
 	
 								  </tr>
 								  {% endfor %}

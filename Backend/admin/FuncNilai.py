@@ -4,10 +4,10 @@ from Backend.config import db_config
 
 
 # create nilai baru
-def tambah_nilai(id_mahsis, id_matkul, nilai, semester):
+def tambah_nilai(id_mahsis, id_matkul, tugas, uts, uas, nilai_akhir, semester):
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
-    query = f"INSERT INTO nilai (id_mahsis, id_matkul, nilai, semester) VALUES ('{id_mahsis}', '{id_matkul}','{nilai}', '{semester}')"
+    query = f"INSERT INTO nilai (id_mahsis, id_matkul, tugas, uts, uas, nilai_akhir, semester) VALUES ('{id_mahsis}', '{id_matkul}','{tugas}', '{uts}', '{uas}', '{nilai_akhir}', '{semester}')"
     cursor.execute(query)
     conn.commit()
     cursor.close()
@@ -23,7 +23,10 @@ def tampil_nilai():
         nilai.id,
         mahasiswa.nama,
         mata_pelajaran.nama_mapel,
-        nilai.nilai,
+        nilai.tugas,
+        nilai.uts,
+        nilai.uas,
+        nilai.nilai_akhir,
         nilai.semester,
         nilai.created_at,
         nilai.updated_at
@@ -37,11 +40,11 @@ def tampil_nilai():
     conn.close()
     return rows
 
-# update matkul untuk update data
-def update_nilai(id, id_mahsis, id_matkul, nilai, semester):
+# update nilai untuk update data
+def update_nilai(id, id_mahsis, id_matkul, tugas, uts, uas, nilai_akhir, semester):
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
-    query = f"""UPDATE nilai SET id_mahsis='{id_mahsis}', id_matkul='{id_matkul}', nilai='{nilai}', semester='{semester}', updated_at=NOW() WHERE id={id}"""
+    query = f"""UPDATE nilai SET id_mahsis='{id_mahsis}', id_matkul='{id_matkul}', tugas='{tugas}', uts='{uts}', uas='{uas}', nilai_akhir='{nilai_akhir}', semester='{semester}', updated_at=NOW() WHERE id={id}"""
     cursor.execute(query)
     conn.commit()
     cursor.close()
