@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template,session, request, redirect, url_for
 from Backend.siswa.FuncProfile import tampil_profile
+from Backend.siswa.FuncDashboard import tampil_nilai_saya
 
 
 userSiswa_bp = Blueprint('userSiswa_bp', __name__, url_prefix = '/siswa')
@@ -26,4 +27,5 @@ def edit_profile():
 def nilai_siswa():
     user_id = session.get('user_id')
     data = tampil_profile(user_id)
-    return render_template('/user/nilaiSiswa.html', profile=data)
+    nilai = tampil_nilai_saya(user_id)
+    return render_template('/user/nilaiSiswa.html', profile=data, nilai=nilai)
