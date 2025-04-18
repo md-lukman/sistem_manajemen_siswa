@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template
 import os
 from Backend.routes.siswaRoutes import siswa_bp
 from Backend.routes.matkulRoutes import matkul_bp
@@ -11,19 +11,13 @@ from Backend.routes.Siswa.profileRoutes import profile_bp
 from Backend.routes.Siswa.jadwalRoute import jadwalSaya_bp
 
 
-
 app = Flask(__name__)
-app.secret_key = 'tes123'
+app.secret_key = 'tes'
 
 
 @app.route('/')
 def login_form():
     return render_template('login.html')
-
-
-# @app.route('/')
-# def login_form():
-#     return render_template('/user/index.html')
 
 app.register_blueprint(siswa_bp)
 app.register_blueprint(matkul_bp)
