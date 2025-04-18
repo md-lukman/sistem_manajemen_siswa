@@ -14,7 +14,7 @@ def tambah_jadwal(hari, jam, matkul, ruangan, semester):
     conn.close()
     
     
-# read matkul
+# read jadwal
 def tampil_jadwal():
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
@@ -25,7 +25,7 @@ def tampil_jadwal():
     return rows
 
 
-# read nilai
+# read jadwal kondisi tertentu
 def tampil_jadwal():
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
@@ -47,7 +47,7 @@ def tampil_jadwal():
     return rows
 
 
-# update matkul untuk update data
+# update jadwal untuk update data
 def update_jadwal(id, hari, jam, id_matkul, ruangan, semester):
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
@@ -58,7 +58,7 @@ def update_jadwal(id, hari, jam, id_matkul, ruangan, semester):
     conn.close()
     
     
-# delete matkul
+# delete jadwal
 def delete_jadwal(id):
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()

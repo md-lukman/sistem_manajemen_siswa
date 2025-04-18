@@ -161,13 +161,13 @@
                 <!-- Menu Item Calendar -->
                 <li>
                   <a
-                    href="#"
-                    @click.prevent="selected = (selected === 'Forms' ? '':'Forms')"
+                    href="/jadwal/saya"
+                    @click="selected = (selected === 'Forms' ? '':'Forms')"
                     class="menu-item group"
-                    :class=" (selected === 'Forms') || (page === 'formElements' || page === 'formLayout' || page === 'proFormElements' || page === 'proFormLayout') ? 'menu-item-active' : 'menu-item-inactive'"
+                    :class=" (selected === 'Forms') || (page === 'formElements' || page === 'formLayout' || page === 'proFormElements' || page === 'proFormLayout') ? 'menu-item-inactive' : 'menu-item-inactive'"
                   >
                     <svg
-                      :class="(selected === 'Forms') || (page === 'formElements' || page === 'formLayout' || page === 'proFormElements' || page === 'proFormLayout') ? 'menu-item-icon-active'  :'menu-item-icon-inactive'"
+                      :class="(selected === 'Forms') || (page === 'formElements' || page === 'formLayout' || page === 'proFormElements' || page === 'proFormLayout') ? 'menu-item-icon-inactive'  :'menu-item-icon-inactive'"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
@@ -567,18 +567,20 @@
               </div>
             </div>
             <!-- Breadcrumb End -->
-            {% for data in nilai %}
+         
             <div class="space-y-5 sm:space-y-6">
               <div
                 class="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]"
               >
+               
                 <div class="px-5 py-4 sm:px-6 sm:py-5">
                   <h3
                     class="text-base font-medium text-gray-800 dark:text-white/90"
                   >
-                    {{data[1]}}
+                    Nilai
                   </h3>
                 </div>
+
                 <div
                   class="p-5 border-t border-gray-100 dark:border-gray-800 sm:p-6"
                 >
@@ -660,6 +662,7 @@
                         </thead>
                         <!-- table header end -->
                         <!-- table body start -->
+                        {% for data in nilai %}
                         <tbody
                           class="divide-y divide-gray-100 dark:divide-gray-800"
                         >
@@ -735,13 +738,14 @@
                             </td>
                           </tr>
                         </tbody>
+                        {% endfor %}
                       </table>
                     </div>
                   </div>
                   <!-- ====== Table Six End -->
                 </div>
               </div>
-              {% endfor %}
+             
             </div>
           </div>
         </main>

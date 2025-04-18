@@ -132,10 +132,10 @@
                     href="/siswa/nilai"
                     @click="selected = (selected === 'Calendar' ? '':'Calendar')"
                     class="menu-item group"
-                    :class=" (selected === 'Calendar') && (page === 'calendar') ? 'menu-item-active' : 'menu-item-inactive'"
+                    :class=" (selected === 'Calendar') && (page === 'calendar') ? 'menu-item-inactive' : 'menu-item-inactive'"
                   >
                     <svg
-                      :class="(selected === 'Calendar') && (page === 'calendar') ? 'menu-item-icon-active'  :'menu-item-icon-inactive'"
+                      :class="(selected === 'Calendar') && (page === 'calendar') ? 'menu-item-icon-inactive'  :'menu-item-icon-inactive'"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
@@ -162,13 +162,13 @@
                 <!-- Menu Item Forms -->
                 <li>
                   <a
-                    href="#"
-                    @click.prevent="selected = (selected === 'Forms' ? '':'Forms')"
+                    href="/jadwal/saya"
+                    @click="selected = (selected === 'Forms' ? '':'Forms')"
                     class="menu-item group"
-                    :class=" (selected === 'Forms') || (page === 'formElements' || page === 'formLayout' || page === 'proFormElements' || page === 'proFormLayout') ? 'menu-item-active' : 'menu-item-inactive'"
+                    :class=" (selected === 'Forms') || (page === 'formElements' || page === 'formLayout' || page === 'proFormElements' || page === 'proFormLayout') ? 'menu-item-inactive' : 'menu-item-inactive'"
                   >
                     <svg
-                      :class="(selected === 'Forms') || (page === 'formElements' || page === 'formLayout' || page === 'proFormElements' || page === 'proFormLayout') ? 'menu-item-icon-active'  :'menu-item-icon-inactive'"
+                      :class="(selected === 'Forms') || (page === 'formElements' || page === 'formLayout' || page === 'proFormElements' || page === 'proFormLayout') ? 'menu-item-icon-inactive'  :'menu-item-icon-inactive'"
                       width="24"
                       height="24"
                       viewBox="0 0 24 24"
