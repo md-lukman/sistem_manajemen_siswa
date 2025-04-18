@@ -33,5 +33,5 @@
 - **Templates**: HTML files powered by Jinja2 for rendering dynamic content.
 
 ## Status
-🚧 **On Progress** 🚧
+- **Done**
 
