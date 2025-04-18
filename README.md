@@ -15,6 +15,7 @@
   <tr>
     <td><img src="static/images/userDashboard.png" width="500"/></td>
     <td><img src="static/images/userProfile.png" width="500"/></td>
+    <td><img src="static/images/form.png" width="500"/></td>
     <td><img src="static/images/error/nilaiku.png" width="500"/></td>
     <td><img src="static/images/jadwal.png" width="500"/></td>
   </tr>
