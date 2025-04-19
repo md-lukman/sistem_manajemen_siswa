@@ -1,5 +1,3 @@
-<h2>Tampilan Aplikasi</h2>
-
 <h3>Tampilan Admin</h3>
 <table>
   <tr>
@@ -33,5 +31,5 @@
 - **Templates**: HTML files powered by Jinja2 for rendering dynamic content.
 
 ## Status
-- **Done**
+- **Done** 
 
