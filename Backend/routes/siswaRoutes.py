@@ -87,11 +87,14 @@ def edit(id):
     return redirect(url_for('siswa_bp.siswa'))
 
 
-@siswa_bp.route('/delete/<int:id>')
-def delete(id):
-    deleteMahasiswa(id)
+@siswa_bp.route('/delete')
+def delete():
+    id = request.args.get('id')
+    if id:
+         deleteMahasiswa(id)
     data = tampil_mahasiswa()
     return render_template('/admin/siswa.html', mahasiswa=data)
+
 
 
 
