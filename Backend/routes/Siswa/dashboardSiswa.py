@@ -3,6 +3,7 @@ from Backend.siswa.FuncProfile import tampil_profile
 from Backend.siswa.FuncDashboard import tampil_nilai_saya
 
 
+
 userSiswa_bp = Blueprint('userSiswa_bp', __name__, url_prefix = '/siswa')
 
 @userSiswa_bp.route('/index')
@@ -29,3 +30,6 @@ def nilai_siswa():
     data = tampil_profile(user_id)
     nilai = tampil_nilai_saya(user_id)
     return render_template('/user/nilaiSiswa.html', profile=data, nilai=nilai)
+
+        
+    
