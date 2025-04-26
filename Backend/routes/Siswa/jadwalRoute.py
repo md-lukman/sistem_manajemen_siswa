@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template,session, request, redirect, url_for
 from Backend.siswa.FuncProfile import tampil_profile
 from Backend.siswa.FuncJadwal import tampil_jadwal
-from Backend.siswa.FuncJadwal import search_jadwal
+from Backend.siswa.FuncJadwal import search_jadwal, getJadwalbySemester
 
 jadwalSaya_bp = Blueprint('jadwalSaya_bp', __name__, url_prefix = "/jadwal")
 userSiswa_bp = Blueprint('userSiswa_bp', __name__, url_prefix = '/siswa')
@@ -30,3 +30,19 @@ def cari_matkul():
         keyword = request.form["input"]
         session['search_keyword'] = keyword
         return redirect(url_for("jadwalSaya_bp.jadwal_saya"))
+    
+    
+@jadwalSaya_bp.route('/dropdown')
+def cari_dropdown():
+    userID = session.get('user_id')
+    data = tampil_profile(userID)
+    
+    semester = request.args.get('semester')
+    hari = request.args.get('hari')
+    
+    if semester or hari:
+       jadw = getJadwalbySemester(semester, hari)
+    else:
+       jadw = []
+        
+    return render_template('/user/jadwalSiswa.html', profile=data, jdw = jadw)

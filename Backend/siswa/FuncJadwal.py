@@ -44,3 +44,28 @@ def search_jadwal(keyword):
     cursor.close()
     conn.close()
     return result
+
+def getJadwalbySemester(semester, hari):
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+    
+    query = "SELECT * FROM jadwal_pelajaran"
+    conditions = []
+    params = []
+    
+    if semester:
+        conditions.append("semester = %s")
+        params.append(semester)
+    if hari:
+        conditions.append("hari = %s")
+        params.append(hari)
+    
+    if conditions:
+        query += " WHERE " + " OR ".join(conditions)
+        
+    cursor.execute(query, params)
+    result = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return result
+
